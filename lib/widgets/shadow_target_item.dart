@@ -47,29 +47,50 @@ class ShadowTargetItem extends StatelessWidget {
   }
 
   Widget _buildOriginalImage() {
-    return Image.asset(
-      item.imagePath,
-      fit: BoxFit.contain,
-      width: 100,
-      height: 100,
-    );
-  }
-
-  Widget _buildShadowImage(bool isHovering) {
-    return ColorFiltered(
-      colorFilter: const ColorFilter.mode(
-        Colors.black, // Turn image into solid black silhouette
-        BlendMode.srcIn,
-      ),
-      child: Opacity(
-        opacity: isHovering ? 0.6 : 0.3, // Dim when hovering
-        child: Image.asset(
-          item.imagePath,
+    return item.imagePath != null
+        ? Image.asset(
+          item.imagePath!,
           fit: BoxFit.contain,
           width: 100,
           height: 100,
+        )
+        : Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(color: item.color, shape: BoxShape.circle),
+        );
+  }
+
+  Widget _buildShadowImage(bool isHovering) {
+    if (item.imagePath != null) {
+      return ColorFiltered(
+        colorFilter: const ColorFilter.mode(
+          Colors.black, // Turn image into solid black silhouette
+          BlendMode.srcIn,
         ),
-      ),
-    );
+        child: Opacity(
+          opacity: isHovering ? 0.6 : 0.3, // Dim when hovering
+          child: Image.asset(
+            item.imagePath!,
+            fit: BoxFit.contain,
+            width: 100,
+            height: 100,
+          ),
+        ),
+      );
+    } else {
+      // For color item, 'shadow' is just a grey/black circle
+      return Opacity(
+        opacity: isHovering ? 0.6 : 0.3,
+        child: Container(
+          width: 80,
+          height: 80,
+          decoration: const BoxDecoration(
+            color: Colors.black, // Shadow is black
+            shape: BoxShape.circle,
+          ),
+        ),
+      );
+    }
   }
 }

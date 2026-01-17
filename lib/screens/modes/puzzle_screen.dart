@@ -166,18 +166,21 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
                               opacity: 0.5, // Increased visibility
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
-                                child: Image.asset(
-                                  _targetItem.imagePath,
-                                  fit: BoxFit.cover,
-                                  errorBuilder:
-                                      (c, o, s) => Container(
-                                        color: Colors.grey.shade300,
-                                        child: const Icon(
-                                          Icons.image_not_supported,
-                                          size: 50,
-                                        ),
-                                      ),
-                                ),
+                                child:
+                                    _targetItem.imagePath != null
+                                        ? Image.asset(
+                                          _targetItem.imagePath!,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (c, o, s) => Container(
+                                                color: Colors.grey.shade300,
+                                                child: const Icon(
+                                                  Icons.image_not_supported,
+                                                  size: 50,
+                                                ),
+                                              ),
+                                        )
+                                        : Container(color: _targetItem.color),
                               ),
                             ),
                           ),

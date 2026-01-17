@@ -103,6 +103,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                     onSpeak: _speak,
                     onPlaySound: () => _playSound(item.audioPath),
                     isVisible: _currentIndex == index,
+                    forceSolidColor: widget.category.id == 'colors',
                   ),
                 );
               },
@@ -143,6 +144,7 @@ class FlashcardItem extends StatelessWidget {
   final Function(String, String) onSpeak;
   final VoidCallback onPlaySound;
   final bool isVisible;
+  final bool forceSolidColor;
 
   const FlashcardItem({
     super.key,
@@ -150,6 +152,7 @@ class FlashcardItem extends StatelessWidget {
     required this.onSpeak,
     required this.onPlaySound,
     this.isVisible = true,
+    this.forceSolidColor = false,
   });
 
   @override
@@ -185,25 +188,20 @@ class FlashcardItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: GestureDetector(
-                      onTap: onPlaySound,
-                      child: Hero(
-                        tag: item.id,
-                        child: Image.asset(
-                          item.imagePath,
-                          fit: BoxFit.contain,
-                          errorBuilder: (c, o, s) => _buildPlaceholder(context),
-                        ),
-                      ),
-                    )
-                    .animate(
-                      onPlay: (controller) => controller.repeat(reverse: true),
-                    )
-                    .scaleXY(
-                      begin: 1.0,
-                      end: 1.05,
-                      duration: 2000.ms,
-                      curve: Curves.easeInOut,
-                    ),
+                  onTap: onPlaySound,
+                  child: Hero(
+                    tag: item.id,
+                    child:
+                        (item.imagePath != null && !forceSolidColor)
+                            ? Image.asset(
+                              item.imagePath!,
+                              fit: BoxFit.contain,
+                              errorBuilder:
+                                  (c, o, s) => _buildPlaceholder(context),
+                            )
+                            : _buildPlaceholder(context),
+                  ),
+                ),
               ),
             ),
             Expanded(
@@ -291,15 +289,20 @@ class FlashcardItem extends StatelessWidget {
   Widget _buildPlaceholder(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: item.color.withOpacity(0.2),
-        shape: BoxShape.circle,
-      ),
-      padding: const EdgeInsets.all(40),
-      child: Icon(
-        Icons.image_not_supported_rounded,
-        size: 80,
         color: item.color,
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white, width: 4),
+        boxShadow: [
+          BoxShadow(
+            color: item.color.withOpacity(0.5),
+            blurRadius: 20,
+            spreadRadius: 2,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
+      width: 200, // Explicit size ensure it's visible
+      height: 200,
     );
   }
 }

@@ -7,6 +7,7 @@ import '../modes/flashcard_screen.dart';
 import '../modes/quiz_screen.dart';
 import '../modes/puzzle_screen.dart';
 import '../modes/surprise_egg_screen.dart';
+import '../modes/matching_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -102,63 +103,104 @@ class HomePage extends StatelessWidget {
                                           },
                                         ),
                                         const SizedBox(height: 16),
-                                        _buildModeOption(
-                                          context,
-                                          title: "Bulmaca",
-                                          icon: Icons.extension_rounded,
-                                          color: Colors.lightBlueAccent,
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (context) => QuizScreen(
-                                                      category: category,
-                                                    ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        const SizedBox(height: 16),
-                                        _buildModeOption(
-                                          context,
-                                          title: "Puzzle",
-                                          icon: Icons.grid_view_rounded,
-                                          color: Colors.purpleAccent,
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (context) => PuzzleScreen(
-                                                      category: category,
-                                                    ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        const SizedBox(height: 16),
-                                        _buildModeOption(
-                                          context,
-                                          title: "Sürpriz Yumurta",
-                                          icon: Icons.egg_rounded,
-                                          color: Colors.pinkAccent,
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (context) =>
-                                                        SurpriseEggScreen(
-                                                          category: category,
-                                                        ),
-                                              ),
-                                            );
-                                          },
-                                        ),
+                                        if (category.id == 'colors') ...[
+                                          _buildModeOption(
+                                            context,
+                                            title: "Bulmaca",
+                                            icon: Icons.extension_rounded,
+                                            color: Colors.lightBlueAccent,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) => QuizScreen(
+                                                        category: category,
+                                                      ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          const SizedBox(height: 16),
+                                          _buildModeOption(
+                                            context,
+                                            title: "Eşleştirme",
+                                            icon: Icons.compare_arrows_rounded,
+                                            color: Colors.lightGreen,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          MatchingScreen(
+                                                            category: category,
+                                                          ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ] else ...[
+                                          _buildModeOption(
+                                            context,
+                                            title: "Bulmaca",
+                                            icon: Icons.extension_rounded,
+                                            color: Colors.lightBlueAccent,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) => QuizScreen(
+                                                        category: category,
+                                                      ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          const SizedBox(height: 16),
+                                          _buildModeOption(
+                                            context,
+                                            title: "Puzzle",
+                                            icon: Icons.grid_view_rounded,
+                                            color: Colors.purpleAccent,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) => PuzzleScreen(
+                                                        category: category,
+                                                      ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          const SizedBox(height: 16),
+                                          _buildModeOption(
+                                            context,
+                                            title: "Sürpriz Yumurta",
+                                            icon: Icons.egg_rounded,
+                                            color: Colors.pinkAccent,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          SurpriseEggScreen(
+                                                            category: category,
+                                                          ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ],
                                       ],
                                     ),
                                   ),
@@ -259,18 +301,60 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Using Icon as placeholder if image fails, in real app use Image.asset
-                  Image.asset(
-                    category.iconPath,
-                    width: 80,
-                    height: 80,
-                    errorBuilder:
-                        (c, o, s) => const Icon(
-                          Icons.star,
-                          size: 80,
+                  // Check for Colors category specifically
+                  category.id == 'colors'
+                      ? Container(
+                        width: 80,
+                        height: 80,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
                           color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                  ),
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 4,
+                          crossAxisSpacing: 4,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.blue,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.yellow,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.green,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                      : Image.asset(
+                        category.iconPath,
+                        width: 80,
+                        height: 80,
+                        errorBuilder:
+                            (c, o, s) => const Icon(
+                              Icons.star,
+                              size: 80,
+                              color: Colors.white,
+                            ),
+                      ),
                   const SizedBox(height: 16),
                   Text(
                     category.nameTr,

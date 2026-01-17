@@ -248,16 +248,24 @@ class _QuizScreenState extends State<QuizScreen> {
                                     child: Column(
                                       children: [
                                         Expanded(
-                                          child: Image.asset(
-                                            item.imagePath,
-                                            fit: BoxFit.contain,
-                                            errorBuilder:
-                                                (c, o, s) => Icon(
-                                                  Icons.help_outline,
-                                                  size: 50,
-                                                  color: item.color,
-                                                ),
-                                          ),
+                                          child:
+                                              item.imagePath != null
+                                                  ? Image.asset(
+                                                    item.imagePath!,
+                                                    fit: BoxFit.contain,
+                                                    errorBuilder:
+                                                        (c, o, s) => Icon(
+                                                          Icons.help_outline,
+                                                          size: 50,
+                                                          color: item.color,
+                                                        ),
+                                                  )
+                                                  : Container(
+                                                    decoration: BoxDecoration(
+                                                      color: item.color,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                  ),
                                         ),
                                       ],
                                     ),

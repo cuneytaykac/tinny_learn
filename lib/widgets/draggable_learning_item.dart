@@ -36,11 +36,19 @@ class DraggableLearningItem extends StatelessWidget {
         width: 100,
         height: 100,
         padding: const EdgeInsets.all(8),
-        child: Image.asset(
-          item.imagePath,
-          fit: BoxFit.contain,
-          errorBuilder: (c, o, s) => const Icon(Icons.error, size: 50),
-        ),
+        child:
+            item.imagePath != null
+                ? Image.asset(
+                  item.imagePath!,
+                  fit: BoxFit.contain,
+                  errorBuilder: (c, o, s) => const Icon(Icons.error, size: 50),
+                )
+                : Container(
+                  decoration: BoxDecoration(
+                    color: item.color,
+                    shape: BoxShape.circle,
+                  ),
+                ),
       ),
     );
   }

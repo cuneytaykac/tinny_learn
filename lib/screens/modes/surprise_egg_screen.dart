@@ -346,12 +346,29 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
       children: [
         // Scaling Reveal Animation
         Container(
-          child: Image.asset(
-            _targetItem.imagePath,
-            width: 250, // Slightly larger since no padding/bg
-            height: 250,
-            fit: BoxFit.contain,
-          ),
+          child:
+              _targetItem.imagePath != null
+                  ? Image.asset(
+                    _targetItem.imagePath!,
+                    width: 250,
+                    height: 250,
+                    fit: BoxFit.contain,
+                  )
+                  : Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: _targetItem.color,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                  ),
         ).animate().scale(duration: 500.ms, curve: Curves.elasticOut),
 
         const SizedBox(height: 30),

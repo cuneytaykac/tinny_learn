@@ -4,7 +4,7 @@ class LearningItem {
   final String id;
   final String nameTr;
   final String nameEn;
-  final String imagePath;
+  final String? imagePath;
   final String audioPath;
   final Color color;
 
@@ -12,7 +12,7 @@ class LearningItem {
     required this.id,
     required this.nameTr,
     required this.nameEn,
-    required this.imagePath,
+    this.imagePath,
     required this.audioPath,
     this.color = Colors.white,
   });
