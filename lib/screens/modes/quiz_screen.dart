@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
+import 'package:country_flags_pro/country_flags_pro.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 
@@ -72,7 +73,11 @@ class _QuizScreenState extends State<QuizScreen> {
             ..removeWhere((item) => item.id == _targetItem.id)
             ..shuffle();
 
-      _options = [_targetItem, ...distractors.take(2)]..shuffle();
+      // Select distractors (1 for flags, 2 for others)
+      final int distractorCount =
+          widget.category.type == CategoryType.flag ? 1 : 2;
+
+      _options = [_targetItem, ...distractors.take(distractorCount)]..shuffle();
     });
 
     // Play the question sound after a short delay (1.5s)
@@ -201,27 +206,30 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
               Expanded(
                 child: Center(
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return Wrap(
-                        spacing: 20,
-                        runSpacing: 20,
-                        alignment: WrapAlignment.center,
-                        children:
-                            _options.map((item) {
-                              final isSelected = _selectedItemId == item.id;
-                              final isWrong = isSelected && !_isCorrect;
-                              final isRight = isSelected && _isCorrect;
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:
+                          _options.map((item) {
+                            final isSelected = _selectedItemId == item.id;
+                            final isWrong = isSelected && !_isCorrect;
+                            final isRight = isSelected && _isCorrect;
 
-                              return GestureDetector(
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: GestureDetector(
                                 onTap: () => _handleOptionTap(item),
                                 child: Animate(
                                   target: isWrong ? 1 : 0,
                                   effects: [ShakeEffect()],
                                   child: Container(
-                                    width: constraints.maxWidth * 0.4,
-                                    height: constraints.maxWidth * 0.4,
-                                    padding: const EdgeInsets.all(16),
+                                    width: 320,
+                                    height:
+                                        widget.category.type ==
+                                                CategoryType.flag
+                                            ? 200
+                                            : 160,
+                                    padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(24),
@@ -245,36 +253,85 @@ class _QuizScreenState extends State<QuizScreen> {
                                         ),
                                       ],
                                     ),
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                          child:
-                                              item.imagePath != null
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(16),
+                                      child: Builder(
+                                        builder: (context) {
+                                          switch (widget.category.type) {
+                                            case CategoryType.flag:
+                                              return Center(
+                                                child: AspectRatio(
+                                                  aspectRatio: 1.6,
+                                                  child: CountryFlagsPro.getFlag(
+                                                    item.id.toLowerCase(),
+                                                    fit: BoxFit.cover,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          12,
+                                                        ),
+                                                  ),
+                                                ),
+                                              );
+                                            case CategoryType.solidColor:
+                                              return LayoutBuilder(
+                                                builder: (
+                                                  context,
+                                                  constraints,
+                                                ) {
+                                                  return Center(
+                                                    child: Container(
+                                                      width:
+                                                          constraints
+                                                              .maxHeight *
+                                                          0.8,
+                                                      height:
+                                                          constraints
+                                                              .maxHeight *
+                                                          0.8,
+                                                      decoration: BoxDecoration(
+                                                        color: item.color,
+                                                        shape: BoxShape.circle,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.black
+                                                                .withOpacity(
+                                                                  0.2,
+                                                                ),
+                                                            blurRadius: 5,
+                                                            offset:
+                                                                const Offset(
+                                                                  0,
+                                                                  2,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            case CategoryType.image:
+                                            default:
+                                              return item.imagePath != null
                                                   ? Image.asset(
                                                     item.imagePath!,
-                                                    fit: BoxFit.contain,
-                                                    errorBuilder:
-                                                        (c, o, s) => Icon(
-                                                          Icons.help_outline,
-                                                          size: 50,
-                                                          color: item.color,
-                                                        ),
+                                                    fit: BoxFit.cover,
                                                   )
-                                                  : Container(
-                                                    decoration: BoxDecoration(
-                                                      color: item.color,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                  ),
-                                        ),
-                                      ],
+                                                  : const Icon(
+                                                    Icons.image_not_supported,
+                                                    size: 50,
+                                                    color: Colors.grey,
+                                                  );
+                                          }
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
-                              );
-                            }).toList(),
-                      );
-                    },
+                              ),
+                            );
+                          }).toList(),
+                    ),
                   ),
                 ),
               ),

@@ -8,6 +8,7 @@ import '../modes/quiz_screen.dart';
 import '../modes/puzzle_screen.dart';
 import '../modes/surprise_egg_screen.dart';
 import '../modes/matching_screen.dart';
+import '../modes/memory_game_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -136,6 +137,45 @@ class HomePage extends StatelessWidget {
                                                   builder:
                                                       (context) =>
                                                           MatchingScreen(
+                                                            category: category,
+                                                          ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ] else if (category.id == 'flags') ...[
+                                          _buildModeOption(
+                                            context,
+                                            title: "Bulmaca",
+                                            icon: Icons.extension_rounded,
+                                            color: Colors.lightBlueAccent,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) => QuizScreen(
+                                                        category: category,
+                                                      ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          const SizedBox(height: 16),
+                                          _buildModeOption(
+                                            context,
+                                            title: "Hafıza Oyunu",
+                                            icon: Icons.grid_view_rounded,
+                                            color: Colors.purpleAccent,
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          MemoryGameScreen(
                                                             category: category,
                                                           ),
                                                 ),

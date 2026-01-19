@@ -18,6 +18,8 @@ class LearningItem {
   });
 }
 
+enum CategoryType { image, solidColor, flag }
+
 class Category {
   final String id;
   final String nameTr;
@@ -26,6 +28,7 @@ class Category {
   final Color color;
   final bool isPremium;
   final List<LearningItem> items;
+  final CategoryType type;
 
   const Category({
     required this.id,
@@ -35,5 +38,6 @@ class Category {
     required this.color,
     this.isPremium = false,
     required this.items,
+    this.type = CategoryType.image,
   });
 }

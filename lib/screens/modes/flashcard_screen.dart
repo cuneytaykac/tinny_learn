@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:country_flags_pro/country_flags_pro.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 
@@ -103,7 +104,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                     onSpeak: _speak,
                     onPlaySound: () => _playSound(item.audioPath),
                     isVisible: _currentIndex == index,
-                    forceSolidColor: widget.category.id == 'colors',
+                    type: widget.category.type,
                   ),
                 );
               },
@@ -113,22 +114,18 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
           // Pagination Dots
           Padding(
             padding: const EdgeInsets.only(bottom: 32.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                widget.category.items.length,
-                (index) => AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: _currentIndex == index ? 24 : 12,
-                  height: 12,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color:
-                        _currentIndex == index
-                            ? AppTheme.primaryTextColor
-                            : Colors.black26,
-                  ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                "${_currentIndex + 1} / ${widget.category.items.length}",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black54,
                 ),
               ),
             ),
@@ -144,7 +141,7 @@ class FlashcardItem extends StatelessWidget {
   final Function(String, String) onSpeak;
   final VoidCallback onPlaySound;
   final bool isVisible;
-  final bool forceSolidColor;
+  final CategoryType type;
 
   const FlashcardItem({
     super.key,
@@ -152,7 +149,7 @@ class FlashcardItem extends StatelessWidget {
     required this.onSpeak,
     required this.onPlaySound,
     this.isVisible = true,
-    this.forceSolidColor = false,
+    this.type = CategoryType.image,
   });
 
   @override
@@ -191,15 +188,51 @@ class FlashcardItem extends StatelessWidget {
                   onTap: onPlaySound,
                   child: Hero(
                     tag: item.id,
-                    child:
-                        (item.imagePath != null && !forceSolidColor)
-                            ? Image.asset(
-                              item.imagePath!,
-                              fit: BoxFit.contain,
-                              errorBuilder:
-                                  (c, o, s) => _buildPlaceholder(context),
-                            )
-                            : _buildPlaceholder(context),
+                    child: Builder(
+                      builder: (context) {
+                        switch (type) {
+                          case CategoryType.solidColor:
+                            return _buildPlaceholder(context);
+                          case CategoryType.flag:
+                            return Center(
+                              child: AspectRatio(
+                                aspectRatio: 1.6, // Slightly wider landscape
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        blurRadius: 10,
+                                        offset: const Offset(0, 5),
+                                      ),
+                                    ],
+                                  ),
+                                  child: CountryFlagsPro.getFlag(
+                                    item.id.toLowerCase(),
+                                    width: 300,
+                                    height: 187, // Approx 1.6 ratio
+                                    fit: BoxFit.cover,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                ),
+                              ),
+                            );
+                          case CategoryType.image:
+                          default:
+                            if (item.imagePath != null) {
+                              return Image.asset(
+                                item.imagePath!,
+                                fit: BoxFit.contain,
+                                errorBuilder:
+                                    (c, o, s) => _buildPlaceholder(context),
+                              );
+                            } else {
+                              return _buildPlaceholder(context);
+                            }
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -224,14 +257,19 @@ class FlashcardItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            item.nameTr,
-                            style: Theme.of(
-                              context,
-                            ).textTheme.displaySmall?.copyWith(
-                              color: AppTheme.primaryTextColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 36,
+                          Flexible(
+                            child: Text(
+                              item.nameTr,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.displaySmall?.copyWith(
+                                color: AppTheme.primaryTextColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 32, // Slightly reduced base size
+                              ),
                             ),
                           ),
                           const SizedBox(width: 12),
