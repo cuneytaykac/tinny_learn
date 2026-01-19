@@ -104,7 +104,20 @@ class PuzzlePiece extends StatelessWidget {
                         height: 200,
                         child:
                             item.imagePath != null
-                                ? Image.asset(item.imagePath!, fit: BoxFit.fill)
+                                ? Image.asset(
+                                  item.imagePath!,
+                                  fit: BoxFit.fill,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      color: Colors.grey.shade300,
+                                      child: const Icon(
+                                        Icons.pets, // Cute fallback
+                                        size: 40,
+                                        color: Colors.orangeAccent,
+                                      ),
+                                    );
+                                  },
+                                )
                                 : Container(color: item.color),
                       ),
                     ),

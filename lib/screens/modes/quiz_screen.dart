@@ -206,29 +206,31 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
               Expanded(
                 child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final isFlag = widget.category.type == CategoryType.flag;
+                      final optionsList =
                           _options.map((item) {
                             final isSelected = _selectedItemId == item.id;
                             final isWrong = isSelected && !_isCorrect;
                             final isRight = isSelected && _isCorrect;
 
                             return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              padding: EdgeInsets.symmetric(
+                                vertical: isFlag ? 12 : 0,
+                              ),
                               child: GestureDetector(
                                 onTap: () => _handleOptionTap(item),
                                 child: Animate(
                                   target: isWrong ? 1 : 0,
                                   effects: [ShakeEffect()],
                                   child: Container(
-                                    width: 320,
-                                    height:
-                                        widget.category.type ==
-                                                CategoryType.flag
-                                            ? 200
-                                            : 160,
+                                    // Full width for flags, ~45% for others (Grid)
+                                    width:
+                                        isFlag
+                                            ? 320
+                                            : constraints.maxWidth * 0.45,
+                                    height: isFlag ? 200 : 160,
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -273,49 +275,46 @@ class _QuizScreenState extends State<QuizScreen> {
                                                 ),
                                               );
                                             case CategoryType.solidColor:
-                                              return LayoutBuilder(
-                                                builder: (
-                                                  context,
-                                                  constraints,
-                                                ) {
-                                                  return Center(
-                                                    child: Container(
-                                                      width:
-                                                          constraints
-                                                              .maxHeight *
-                                                          0.8,
-                                                      height:
-                                                          constraints
-                                                              .maxHeight *
-                                                          0.8,
-                                                      decoration: BoxDecoration(
-                                                        color: item.color,
-                                                        shape: BoxShape.circle,
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            color: Colors.black
-                                                                .withOpacity(
-                                                                  0.2,
-                                                                ),
-                                                            blurRadius: 5,
-                                                            offset:
-                                                                const Offset(
-                                                                  0,
-                                                                  2,
-                                                                ),
-                                                          ),
-                                                        ],
+                                              return Center(
+                                                child: Container(
+                                                  width: 100,
+                                                  height: 100,
+                                                  decoration: BoxDecoration(
+                                                    color: item.color,
+                                                    shape: BoxShape.circle,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black
+                                                            .withOpacity(0.2),
+                                                        blurRadius: 5,
+                                                        offset: const Offset(
+                                                          0,
+                                                          2,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
-                                                },
+                                                    ],
+                                                  ),
+                                                ),
                                               );
                                             case CategoryType.image:
                                             default:
                                               return item.imagePath != null
                                                   ? Image.asset(
                                                     item.imagePath!,
-                                                    fit: BoxFit.cover,
+                                                    fit: BoxFit.contain,
+                                                    errorBuilder: (
+                                                      context,
+                                                      error,
+                                                      stackTrace,
+                                                    ) {
+                                                      return const Icon(
+                                                        Icons
+                                                            .pets, // Cute placeholder for animals
+                                                        size: 60,
+                                                        color:
+                                                            Colors.orangeAccent,
+                                                      );
+                                                    },
                                                   )
                                                   : const Icon(
                                                     Icons.image_not_supported,
@@ -330,8 +329,23 @@ class _QuizScreenState extends State<QuizScreen> {
                                 ),
                               ),
                             );
-                          }).toList(),
-                    ),
+                          }).toList();
+
+                      return SingleChildScrollView(
+                        child:
+                            isFlag
+                                ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: optionsList,
+                                )
+                                : Wrap(
+                                  spacing: 16,
+                                  runSpacing: 16,
+                                  alignment: WrapAlignment.center,
+                                  children: optionsList,
+                                ),
+                      );
+                    },
                   ),
                 ),
               ),
