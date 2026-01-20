@@ -17,7 +17,7 @@ class FlashcardScreen extends StatelessWidget {
       child: Builder(
         builder: (context) {
           final provider = context.read<FlashcardProvider>();
-          
+
           return Scaffold(
             backgroundColor: category.color,
             appBar: AppBar(
@@ -58,7 +58,8 @@ class FlashcardScreen extends StatelessWidget {
                             return FlashcardItem(
                               item: item,
                               onSpeak: provider.speak,
-                              onPlaySound: () => provider.playSound(item.audioPath),
+                              onPlaySound:
+                                  () => provider.playSound(item.audioPath),
                               isVisible: currentIndex == index,
                               type: category.type,
                             );
@@ -73,7 +74,10 @@ class FlashcardScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32.0),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black12,
                       borderRadius: BorderRadius.circular(20),
@@ -101,4 +105,3 @@ class FlashcardScreen extends StatelessWidget {
     );
   }
 }
-
