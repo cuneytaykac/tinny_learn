@@ -111,6 +111,7 @@ class _FlashcardItemState extends State<FlashcardItem>
                               child: Image.asset(
                                 widget.item.imagePath!,
                                 fit: BoxFit.contain,
+
                                 errorBuilder:
                                     (c, o, s) => _buildPlaceholder(context),
                               ),

@@ -341,60 +341,8 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Check for Colors category specifically
-                  category.id == 'colors'
-                      ? Container(
-                        width: 80,
-                        height: 80,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 4,
-                          crossAxisSpacing: 4,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.yellow,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.green,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                      : Image.asset(
-                        category.iconPath,
-                        width: 80,
-                        height: 80,
-                        errorBuilder:
-                            (c, o, s) => const Icon(
-                              Icons.star,
-                              size: 80,
-                              color: Colors.white,
-                            ),
-                      ),
+                  // Category-specific icons
+                  _buildCategoryIcon(category.id),
                   const SizedBox(height: 16),
                   Text(
                     category.nameTr,
@@ -422,5 +370,106 @@ class CategoryCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildCategoryIcon(String categoryId) {
+    switch (categoryId) {
+      case 'colors':
+        return Container(
+          width: 80,
+          height: 80,
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 4,
+            crossAxisSpacing: 4,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.blue,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.yellow,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.green,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ],
+          ),
+        );
+      case 'animals':
+        return Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: const Icon(Icons.pets_rounded, size: 50, color: Colors.orange),
+        );
+      case 'vehicles':
+        return Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: const Icon(
+            Icons.directions_car_rounded,
+            size: 50,
+            color: Colors.blue,
+          ),
+        );
+      case 'flags':
+        return Image.asset(
+          category.iconPath,
+          width: 80,
+          height: 80,
+          errorBuilder:
+              (c, o, s) => Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Icon(
+                  Icons.star_rounded,
+                  size: 50,
+                  color: Colors.amber,
+                ),
+              ),
+        );
+      default:
+        return Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: const Icon(Icons.star_rounded, size: 50, color: Colors.amber),
+        );
+    }
   }
 }
