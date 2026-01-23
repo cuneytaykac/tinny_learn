@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/data_models.dart';
 
 class MatchingTargetItem extends StatelessWidget {
@@ -55,13 +56,34 @@ class MatchingTargetItem extends StatelessWidget {
                   )
                   : Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child:
-                        item.imagePath != null
-                            ? Image.asset(item.imagePath!)
-                            : const Icon(
-                              Icons.image_not_supported,
-                              color: Colors.grey,
-                            ),
+                    child: Builder(
+                      builder: (context) {
+                        if (item.imagePath != null) {
+                          if (item.imagePath!.startsWith('http')) {
+                            return CachedNetworkImage(
+                              imageUrl: item.imagePath!,
+                              fit: BoxFit.contain,
+                              placeholder:
+                                  (context, url) => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                              errorWidget:
+                                  (context, url, error) => const Icon(
+                                    Icons.error,
+                                    color: Colors.red,
+                                  ),
+                            );
+                          } else {
+                            return Image.asset(item.imagePath!);
+                          }
+                        } else {
+                          return const Icon(
+                            Icons.image_not_supported,
+                            color: Colors.grey,
+                          );
+                        }
+                      },
+                    ),
                   ),
         );
       },

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../data/remote/remote.dart';
 import '../../data/local/local.dart';
+import '../../providers/game_provider.dart';
 import '../home/home_page.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,8 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
   // Services
   final _animalService = AnimalService();
   final _vehicleService = VehicleService();
+  final _colorService = ColorService();
   final _animalLocalService = AnimalLocalService();
   final _vehicleLocalService = VehicleLocalService();
+  final _colorLocalService = ColorLocalService();
 
   double _progress = 0.0;
   String _statusText = 'Başlıyor...';
@@ -76,6 +80,29 @@ class _SplashScreenState extends State<SplashScreen> {
       await _vehicleLocalService.saveVehicles(vehicles);
 
       // Wait 1 second to let user read "Loading vehicles..."
+      await Future.delayed(const Duration(seconds: 1));
+
+      // 3. Fetch Colors
+      setState(() {
+        _statusText =
+            languageCode == 'tr'
+                ? 'Renkler yükleniyor...'
+                : 'Loading colors...';
+        _progress = 0.9;
+      });
+
+      // Colors are language independent for now (fetching image list),
+      // names are mapped locally or extracted.
+      final colors = await _colorService.fetchColors();
+      await _colorLocalService.saveColors(colors);
+
+      if (mounted) {
+        await Provider.of<GameProvider>(
+          context,
+          listen: false,
+        ).loadCategories();
+      }
+
       await Future.delayed(const Duration(seconds: 1));
 
       setState(() {

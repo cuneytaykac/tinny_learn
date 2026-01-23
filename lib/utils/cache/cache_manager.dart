@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tiny_learners/models/responseColor/response_color.dart';
 import '../../models/animal/animals.dart';
 import '../../models/vehicle/vehicle.dart';
 
@@ -10,6 +10,8 @@ class HiveHelper {
   static const animalBoxKey = 'animalBoxKey';
   static const vehicleKey = 'vehicleKey';
   static const vehicleBoxKey = 'vehicleBoxKey';
+  static const colorKey = 'colorKey';
+  static const colorBoxKey = 'colorBoxKey';
 
   Future<void> setupHive() async {
     await Hive.initFlutter();
@@ -23,11 +25,13 @@ class HiveHelper {
   Future<void> _openBox() async {
     await Hive.openBox<Animal>(animalBoxKey);
     await Hive.openBox<Vehicle>(vehicleBoxKey);
+    await Hive.openBox<ResponseColor>(colorBoxKey);
   }
 
   void _initTypeAdapters() {
     Hive.registerAdapter(VehicleAdapter());
     Hive.registerAdapter(AnimalAdapter());
+    Hive.registerAdapter(ResponseColorAdapter());
   }
 
   // CRUD Operations
