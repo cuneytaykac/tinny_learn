@@ -206,7 +206,7 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
         const SizedBox(height: 30),
 
         Text(
-          provider.targetItem.nameTr.toUpperCase(),
+          provider.targetItem.name.toUpperCase(),
           style: TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.bold,

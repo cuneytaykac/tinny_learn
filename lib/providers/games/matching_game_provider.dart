@@ -52,7 +52,11 @@ class MatchingGameProvider extends ChangeNotifier {
     try {
       if (item.audioPath.isNotEmpty) {
         await _audioPlayer.stop();
-        await _audioPlayer.play(AssetSource(item.audioPath));
+        if (item.audioPath.startsWith('http')) {
+          await _audioPlayer.play(UrlSource(item.audioPath));
+        } else {
+          await _audioPlayer.play(AssetSource(item.audioPath));
+        }
       } else {
         await _audioPlayer.stop();
         await _audioPlayer.play(AssetSource('audio/effects/correct.mp3'));

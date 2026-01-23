@@ -345,7 +345,7 @@ class CategoryCard extends StatelessWidget {
                   _buildCategoryIcon(category.id),
                   const SizedBox(height: 16),
                   Text(
-                    category.nameTr,
+                    category.name,
                     style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,

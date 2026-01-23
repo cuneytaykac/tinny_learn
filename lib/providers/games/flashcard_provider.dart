@@ -53,7 +53,11 @@ class FlashcardProvider extends ChangeNotifier {
     await _flutterTts.stop();
     await _audioPlayer.stop();
     try {
-      await _audioPlayer.play(AssetSource(audioPath));
+      if (audioPath.startsWith('http')) {
+        await _audioPlayer.play(UrlSource(audioPath));
+      } else {
+        await _audioPlayer.play(AssetSource(audioPath));
+      }
     } catch (e) {
       debugPrint("Error playing sound: $e");
     }

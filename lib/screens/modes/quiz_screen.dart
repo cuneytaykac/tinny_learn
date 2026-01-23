@@ -25,7 +25,7 @@ class QuizScreen extends StatelessWidget {
               elevation: 0,
               leading: BackButton(color: AppTheme.primaryTextColor),
               title: Text(
-                '${category.nameTr} Bulmaca',
+                '${category.name} Bulmaca',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: AppTheme.primaryTextColor,
                   fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class QuizScreen extends StatelessWidget {
                               const SizedBox(width: 16),
                               Flexible(
                                 child: Text(
-                                  'Hangisi "${provider.targetItem.nameTr}"?',
+                                  'Hangisi "${provider.targetItem.name}"?',
                                   style: Theme.of(
                                     context,
                                   ).textTheme.headlineSmall?.copyWith(

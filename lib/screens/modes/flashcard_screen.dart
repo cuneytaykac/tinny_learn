@@ -27,7 +27,7 @@ class FlashcardScreen extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
               title: Text(
-                category.nameTr,
+                category.name,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: AppTheme.primaryTextColor,
                   fontWeight: FontWeight.bold,

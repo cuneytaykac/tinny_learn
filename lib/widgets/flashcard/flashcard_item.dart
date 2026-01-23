@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags_pro/country_flags_pro.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:tiny_learners/gen/assets.gen.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 
@@ -108,12 +110,15 @@ class _FlashcardItemState extends State<FlashcardItem>
                           if (widget.item.imagePath != null) {
                             return ScaleTransition(
                               scale: _scaleAnimation,
-                              child: Image.asset(
-                                widget.item.imagePath!,
+                              child: CachedNetworkImage(
+                                imageUrl: widget.item.imagePath!,
                                 fit: BoxFit.contain,
-
-                                errorBuilder:
-                                    (c, o, s) => _buildPlaceholder(context),
+                                placeholder:
+                                    (context, url) =>
+                                        _buildPlaceholder(context),
+                                errorWidget:
+                                    (context, url, error) =>
+                                        _buildPlaceholder(context),
                               ),
                             );
                           } else {
@@ -132,7 +137,7 @@ class _FlashcardItemState extends State<FlashcardItem>
               children: [
                 // Turkish Name Row
                 GestureDetector(
-                  onTap: () => widget.onSpeak(widget.item.nameTr, "tr-TR"),
+                  onTap: () => widget.onSpeak(widget.item.name, "tr-TR"),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -148,7 +153,7 @@ class _FlashcardItemState extends State<FlashcardItem>
                       children: [
                         Flexible(
                           child: Text(
-                            widget.item.nameTr,
+                            widget.item.name,
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -166,39 +171,6 @@ class _FlashcardItemState extends State<FlashcardItem>
                           Icons.volume_up_rounded,
                           color: AppTheme.accentColor,
                           size: 32,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // English Name Row
-                GestureDetector(
-                  onTap: () => widget.onSpeak(widget.item.nameEn, "en-US"),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          widget.item.nameEn,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.headlineSmall?.copyWith(
-                            color: Colors.grey[400],
-                            fontStyle: FontStyle.italic,
-                            fontSize: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Icon(
-                          Icons.volume_up_rounded,
-                          color: Colors.grey[400],
-                          size: 24,
                         ),
                       ],
                     ),

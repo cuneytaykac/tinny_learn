@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 
 class LearningItem {
   final String id;
-  final String nameTr;
-  final String nameEn;
+  final String name;
   final String? imagePath;
   final String audioPath;
   final Color color;
 
   const LearningItem({
     required this.id,
-    required this.nameTr,
-    required this.nameEn,
+    required this.name,
     this.imagePath,
     required this.audioPath,
     this.color = Colors.white,
@@ -22,8 +20,7 @@ enum CategoryType { image, solidColor, flag }
 
 class Category {
   final String id;
-  final String nameTr;
-  final String nameEn;
+  final String name;
   final String iconPath;
   final Color color;
   final bool isPremium;
@@ -32,8 +29,8 @@ class Category {
 
   const Category({
     required this.id,
-    required this.nameTr,
-    required this.nameEn,
+    required this.name,
+
     required this.iconPath,
     required this.color,
     this.isPremium = false,

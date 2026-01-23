@@ -7,14 +7,14 @@ import '../../models/data_models.dart';
 
 class QuizProvider extends ChangeNotifier {
   final Category category;
-  
+
   // State
   late LearningItem _targetItem;
   List<LearningItem> _options = [];
   bool _isAnswered = false;
   String? _selectedItemId;
   bool _isCorrect = false;
-  
+
   // Controllers
   final ConfettiController _confettiController = ConfettiController(
     duration: const Duration(seconds: 2),
@@ -59,9 +59,10 @@ class QuizProvider extends ChangeNotifier {
     _targetItem = category.items[_random.nextInt(category.items.length)];
 
     // Select distractors
-    final distractors = List<LearningItem>.from(category.items)
-      ..removeWhere((item) => item.id == _targetItem.id)
-      ..shuffle();
+    final distractors =
+        List<LearningItem>.from(category.items)
+          ..removeWhere((item) => item.id == _targetItem.id)
+          ..shuffle();
 
     // 1 distractor for flags, 2 for others
     final int distractorCount = category.type == CategoryType.flag ? 1 : 2;
@@ -79,7 +80,11 @@ class QuizProvider extends ChangeNotifier {
     await _flutterTts.stop();
     await _audioPlayer.stop();
     try {
-      await _audioPlayer.play(AssetSource(_targetItem.audioPath));
+      if (_targetItem.audioPath.startsWith('http')) {
+        await _audioPlayer.play(UrlSource(_targetItem.audioPath));
+      } else {
+        await _audioPlayer.play(AssetSource(_targetItem.audioPath));
+      }
     } catch (e) {
       debugPrint("Error playing sound: $e");
     }
@@ -96,13 +101,13 @@ class QuizProvider extends ChangeNotifier {
     if (_isCorrect) {
       _confettiController.play();
       _playSound('ui/applause.mp3');
-      
+
       Future.delayed(const Duration(seconds: 3), () {
         startNewRound();
       });
     } else {
       _playSound('ui/wrong.mp3');
-      
+
       Future.delayed(const Duration(seconds: 1), () {
         _isAnswered = false;
         _selectedItemId = null;
