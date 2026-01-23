@@ -1,5 +1,3 @@
-// dart format width=80
-
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -7,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 
@@ -94,154 +92,160 @@ class $AssetsAudioAnimalsGen {
 
   /// List of all assets
   List<String> get values => [
-    bear,
-    bee,
-    butterfly,
-    cat,
-    chicken,
-    cow,
-    dog,
-    duck,
-    elephant,
-    frog,
-    horse,
-    lion,
-    monkey,
-    sheep,
-    tiger,
-  ];
+        bear,
+        bee,
+        butterfly,
+        cat,
+        chicken,
+        cow,
+        dog,
+        duck,
+        elephant,
+        frog,
+        horse,
+        lion,
+        monkey,
+        sheep,
+        tiger
+      ];
 }
 
 class $AssetsImagesAnimalsGen {
   const $AssetsImagesAnimalsGen();
 
-  /// File path: assets/images/animals/bear.png
+  /// File path: assets/images/animals/bear.webp
   AssetGenImage get bear =>
-      const AssetGenImage('assets/images/animals/bear.png');
+      const AssetGenImage('assets/images/animals/bear.webp');
 
-  /// File path: assets/images/animals/bee.png
-  AssetGenImage get bee => const AssetGenImage('assets/images/animals/bee.png');
+  /// File path: assets/images/animals/bee.webp
+  AssetGenImage get bee =>
+      const AssetGenImage('assets/images/animals/bee.webp');
 
-  /// File path: assets/images/animals/butterfly.png
+  /// File path: assets/images/animals/butterfly.webp
   AssetGenImage get butterfly =>
-      const AssetGenImage('assets/images/animals/butterfly.png');
+      const AssetGenImage('assets/images/animals/butterfly.webp');
 
-  /// File path: assets/images/animals/cat.png
-  AssetGenImage get cat => const AssetGenImage('assets/images/animals/cat.png');
+  /// File path: assets/images/animals/cat.webp
+  AssetGenImage get cat =>
+      const AssetGenImage('assets/images/animals/cat.webp');
 
-  /// File path: assets/images/animals/chicken.png
+  /// File path: assets/images/animals/chicken.webp
   AssetGenImage get chicken =>
-      const AssetGenImage('assets/images/animals/chicken.png');
+      const AssetGenImage('assets/images/animals/chicken.webp');
 
-  /// File path: assets/images/animals/cow.png
-  AssetGenImage get cow => const AssetGenImage('assets/images/animals/cow.png');
+  /// File path: assets/images/animals/cow.webp
+  AssetGenImage get cow =>
+      const AssetGenImage('assets/images/animals/cow.webp');
 
-  /// File path: assets/images/animals/crocodile.png
+  /// File path: assets/images/animals/crocodile.webp
   AssetGenImage get crocodile =>
-      const AssetGenImage('assets/images/animals/crocodile.png');
+      const AssetGenImage('assets/images/animals/crocodile.webp');
 
-  /// File path: assets/images/animals/dog.png
-  AssetGenImage get dog => const AssetGenImage('assets/images/animals/dog.png');
+  /// File path: assets/images/animals/dog.webp
+  AssetGenImage get dog =>
+      const AssetGenImage('assets/images/animals/dog.webp');
 
-  /// File path: assets/images/animals/duck.png
+  /// File path: assets/images/animals/duck.webp
   AssetGenImage get duck =>
-      const AssetGenImage('assets/images/animals/duck.png');
+      const AssetGenImage('assets/images/animals/duck.webp');
 
-  /// File path: assets/images/animals/elephant.png
+  /// File path: assets/images/animals/elephant.webp
   AssetGenImage get elephant =>
-      const AssetGenImage('assets/images/animals/elephant.png');
+      const AssetGenImage('assets/images/animals/elephant.webp');
 
-  /// File path: assets/images/animals/fox.png
-  AssetGenImage get fox => const AssetGenImage('assets/images/animals/fox.png');
+  /// File path: assets/images/animals/fox.webp
+  AssetGenImage get fox =>
+      const AssetGenImage('assets/images/animals/fox.webp');
 
-  /// File path: assets/images/animals/frog.png
+  /// File path: assets/images/animals/frog.webp
   AssetGenImage get frog =>
-      const AssetGenImage('assets/images/animals/frog.png');
+      const AssetGenImage('assets/images/animals/frog.webp');
 
-  /// File path: assets/images/animals/giraffe.png
+  /// File path: assets/images/animals/giraffe.webp
   AssetGenImage get giraffe =>
-      const AssetGenImage('assets/images/animals/giraffe.png');
+      const AssetGenImage('assets/images/animals/giraffe.webp');
 
-  /// File path: assets/images/animals/hippo.png
+  /// File path: assets/images/animals/hippo.webp
   AssetGenImage get hippo =>
-      const AssetGenImage('assets/images/animals/hippo.png');
+      const AssetGenImage('assets/images/animals/hippo.webp');
 
-  /// File path: assets/images/animals/horse.png
+  /// File path: assets/images/animals/horse.webp
   AssetGenImage get horse =>
-      const AssetGenImage('assets/images/animals/horse.png');
+      const AssetGenImage('assets/images/animals/horse.webp');
 
-  /// File path: assets/images/animals/kangaroo.png
+  /// File path: assets/images/animals/kangaroo.webp
   AssetGenImage get kangaroo =>
-      const AssetGenImage('assets/images/animals/kangaroo.png');
+      const AssetGenImage('assets/images/animals/kangaroo.webp');
 
-  /// File path: assets/images/animals/lion.png
+  /// File path: assets/images/animals/lion.webp
   AssetGenImage get lion =>
-      const AssetGenImage('assets/images/animals/lion.png');
+      const AssetGenImage('assets/images/animals/lion.webp');
 
-  /// File path: assets/images/animals/monkey.png
+  /// File path: assets/images/animals/monkey.webp
   AssetGenImage get monkey =>
-      const AssetGenImage('assets/images/animals/monkey.png');
+      const AssetGenImage('assets/images/animals/monkey.webp');
 
-  /// File path: assets/images/animals/owl.png
-  AssetGenImage get owl => const AssetGenImage('assets/images/animals/owl.png');
+  /// File path: assets/images/animals/owl.webp
+  AssetGenImage get owl =>
+      const AssetGenImage('assets/images/animals/owl.webp');
 
-  /// File path: assets/images/animals/panda.png
+  /// File path: assets/images/animals/panda.webp
   AssetGenImage get panda =>
-      const AssetGenImage('assets/images/animals/panda.png');
+      const AssetGenImage('assets/images/animals/panda.webp');
 
-  /// File path: assets/images/animals/penguin.png
+  /// File path: assets/images/animals/penguin.webp
   AssetGenImage get penguin =>
-      const AssetGenImage('assets/images/animals/penguin.png');
+      const AssetGenImage('assets/images/animals/penguin.webp');
 
-  /// File path: assets/images/animals/rabbit.png
+  /// File path: assets/images/animals/rabbit.webp
   AssetGenImage get rabbit =>
-      const AssetGenImage('assets/images/animals/rabbit.png');
+      const AssetGenImage('assets/images/animals/rabbit.webp');
 
-  /// File path: assets/images/animals/sheep.png
+  /// File path: assets/images/animals/sheep.webp
   AssetGenImage get sheep =>
-      const AssetGenImage('assets/images/animals/sheep.png');
+      const AssetGenImage('assets/images/animals/sheep.webp');
 
-  /// File path: assets/images/animals/tiger.png
+  /// File path: assets/images/animals/tiger.webp
   AssetGenImage get tiger =>
-      const AssetGenImage('assets/images/animals/tiger.png');
+      const AssetGenImage('assets/images/animals/tiger.webp');
 
-  /// File path: assets/images/animals/turtle.png
+  /// File path: assets/images/animals/turtle.webp
   AssetGenImage get turtle =>
-      const AssetGenImage('assets/images/animals/turtle.png');
+      const AssetGenImage('assets/images/animals/turtle.webp');
 
-  /// File path: assets/images/animals/zebra.png
+  /// File path: assets/images/animals/zebra.webp
   AssetGenImage get zebra =>
-      const AssetGenImage('assets/images/animals/zebra.png');
+      const AssetGenImage('assets/images/animals/zebra.webp');
 
   /// List of all assets
   List<AssetGenImage> get values => [
-    bear,
-    bee,
-    butterfly,
-    cat,
-    chicken,
-    cow,
-    crocodile,
-    dog,
-    duck,
-    elephant,
-    fox,
-    frog,
-    giraffe,
-    hippo,
-    horse,
-    kangaroo,
-    lion,
-    monkey,
-    owl,
-    panda,
-    penguin,
-    rabbit,
-    sheep,
-    tiger,
-    turtle,
-    zebra,
-  ];
+        bear,
+        bee,
+        butterfly,
+        cat,
+        chicken,
+        cow,
+        crocodile,
+        dog,
+        duck,
+        elephant,
+        fox,
+        frog,
+        giraffe,
+        hippo,
+        horse,
+        kangaroo,
+        lion,
+        monkey,
+        owl,
+        panda,
+        penguin,
+        rabbit,
+        sheep,
+        tiger,
+        turtle,
+        zebra
+      ];
 }
 
 class $AssetsImagesColorsGen {
@@ -283,17 +287,8 @@ class $AssetsImagesColorsGen {
       const AssetGenImage('assets/images/colors/yellow.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-    black,
-    blue,
-    green,
-    orange,
-    pink,
-    purple,
-    red,
-    white,
-    yellow,
-  ];
+  List<AssetGenImage> get values =>
+      [black, blue, green, orange, pink, purple, red, white, yellow];
 }
 
 class $AssetsImagesVehiclesGen {
@@ -303,105 +298,105 @@ class $AssetsImagesVehiclesGen {
   AssetGenImage get ambulance =>
       const AssetGenImage('assets/images/vehicles/ambulance.webp');
 
-  /// File path: assets/images/vehicles/bicycle.png
+  /// File path: assets/images/vehicles/bicycle.webp
   AssetGenImage get bicycle =>
-      const AssetGenImage('assets/images/vehicles/bicycle.png');
+      const AssetGenImage('assets/images/vehicles/bicycle.webp');
 
-  /// File path: assets/images/vehicles/bus.png
+  /// File path: assets/images/vehicles/bus.webp
   AssetGenImage get bus =>
-      const AssetGenImage('assets/images/vehicles/bus.png');
+      const AssetGenImage('assets/images/vehicles/bus.webp');
 
   /// File path: assets/images/vehicles/car.webp
   AssetGenImage get car =>
       const AssetGenImage('assets/images/vehicles/car.webp');
 
-  /// File path: assets/images/vehicles/concrete_mixer.png
+  /// File path: assets/images/vehicles/concrete_mixer.webp
   AssetGenImage get concreteMixer =>
-      const AssetGenImage('assets/images/vehicles/concrete_mixer.png');
+      const AssetGenImage('assets/images/vehicles/concrete_mixer.webp');
 
-  /// File path: assets/images/vehicles/excavator.png
+  /// File path: assets/images/vehicles/excavator.webp
   AssetGenImage get excavator =>
-      const AssetGenImage('assets/images/vehicles/excavator.png');
+      const AssetGenImage('assets/images/vehicles/excavator.webp');
 
-  /// File path: assets/images/vehicles/fire_truck.png
+  /// File path: assets/images/vehicles/fire_truck.webp
   AssetGenImage get fireTruck =>
-      const AssetGenImage('assets/images/vehicles/fire_truck.png');
+      const AssetGenImage('assets/images/vehicles/fire_truck.webp');
 
-  /// File path: assets/images/vehicles/helicopter.png
+  /// File path: assets/images/vehicles/helicopter.webp
   AssetGenImage get helicopter =>
-      const AssetGenImage('assets/images/vehicles/helicopter.png');
+      const AssetGenImage('assets/images/vehicles/helicopter.webp');
 
-  /// File path: assets/images/vehicles/hot_air_balloon.png
+  /// File path: assets/images/vehicles/hot_air_balloon.webp
   AssetGenImage get hotAirBalloon =>
-      const AssetGenImage('assets/images/vehicles/hot_air_balloon.png');
+      const AssetGenImage('assets/images/vehicles/hot_air_balloon.webp');
 
-  /// File path: assets/images/vehicles/motorcycle.png
+  /// File path: assets/images/vehicles/motorcycle.webp
   AssetGenImage get motorcycle =>
-      const AssetGenImage('assets/images/vehicles/motorcycle.png');
+      const AssetGenImage('assets/images/vehicles/motorcycle.webp');
 
-  /// File path: assets/images/vehicles/plane.png
+  /// File path: assets/images/vehicles/plane.webp
   AssetGenImage get plane =>
-      const AssetGenImage('assets/images/vehicles/plane.png');
+      const AssetGenImage('assets/images/vehicles/plane.webp');
 
-  /// File path: assets/images/vehicles/police_car.png
+  /// File path: assets/images/vehicles/police_car.webp
   AssetGenImage get policeCar =>
-      const AssetGenImage('assets/images/vehicles/police_car.png');
+      const AssetGenImage('assets/images/vehicles/police_car.webp');
 
-  /// File path: assets/images/vehicles/rocket.png
+  /// File path: assets/images/vehicles/rocket.webp
   AssetGenImage get rocket =>
-      const AssetGenImage('assets/images/vehicles/rocket.png');
+      const AssetGenImage('assets/images/vehicles/rocket.webp');
 
-  /// File path: assets/images/vehicles/scooter.png
+  /// File path: assets/images/vehicles/scooter.webp
   AssetGenImage get scooter =>
-      const AssetGenImage('assets/images/vehicles/scooter.png');
+      const AssetGenImage('assets/images/vehicles/scooter.webp');
 
-  /// File path: assets/images/vehicles/ship.png
+  /// File path: assets/images/vehicles/ship.webp
   AssetGenImage get ship =>
-      const AssetGenImage('assets/images/vehicles/ship.png');
+      const AssetGenImage('assets/images/vehicles/ship.webp');
 
-  /// File path: assets/images/vehicles/submarine.png
+  /// File path: assets/images/vehicles/submarine.webp
   AssetGenImage get submarine =>
-      const AssetGenImage('assets/images/vehicles/submarine.png');
+      const AssetGenImage('assets/images/vehicles/submarine.webp');
 
-  /// File path: assets/images/vehicles/taxi.png
+  /// File path: assets/images/vehicles/taxi.webp
   AssetGenImage get taxi =>
-      const AssetGenImage('assets/images/vehicles/taxi.png');
+      const AssetGenImage('assets/images/vehicles/taxi.webp');
 
-  /// File path: assets/images/vehicles/tractor.png
+  /// File path: assets/images/vehicles/tractor.webp
   AssetGenImage get tractor =>
-      const AssetGenImage('assets/images/vehicles/tractor.png');
+      const AssetGenImage('assets/images/vehicles/tractor.webp');
 
-  /// File path: assets/images/vehicles/train.png
+  /// File path: assets/images/vehicles/train.webp
   AssetGenImage get train =>
-      const AssetGenImage('assets/images/vehicles/train.png');
+      const AssetGenImage('assets/images/vehicles/train.webp');
 
-  /// File path: assets/images/vehicles/truck.png
+  /// File path: assets/images/vehicles/truck.webp
   AssetGenImage get truck =>
-      const AssetGenImage('assets/images/vehicles/truck.png');
+      const AssetGenImage('assets/images/vehicles/truck.webp');
 
   /// List of all assets
   List<AssetGenImage> get values => [
-    ambulance,
-    bicycle,
-    bus,
-    car,
-    concreteMixer,
-    excavator,
-    fireTruck,
-    helicopter,
-    hotAirBalloon,
-    motorcycle,
-    plane,
-    policeCar,
-    rocket,
-    scooter,
-    ship,
-    submarine,
-    taxi,
-    tractor,
-    train,
-    truck,
-  ];
+        ambulance,
+        bicycle,
+        bus,
+        car,
+        concreteMixer,
+        excavator,
+        fireTruck,
+        helicopter,
+        hotAirBalloon,
+        motorcycle,
+        plane,
+        policeCar,
+        rocket,
+        scooter,
+        ship,
+        submarine,
+        taxi,
+        tractor,
+        train,
+        truck
+      ];
 }
 
 class Assets {
@@ -417,14 +412,12 @@ class AssetGenImage {
     this._assetName, {
     this.size,
     this.flavors = const {},
-    this.animation,
   });
 
   final String _assetName;
 
   final Size? size;
   final Set<String> flavors;
-  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -479,23 +472,18 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;
 
   String get keyName => _assetName;
-}
-
-class AssetGenImageAnimation {
-  const AssetGenImageAnimation({
-    required this.isAnimation,
-    required this.duration,
-    required this.frames,
-  });
-
-  final bool isAnimation;
-  final Duration duration;
-  final int frames;
 }

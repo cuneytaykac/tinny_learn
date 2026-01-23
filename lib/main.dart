@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tiny_learners/utils/cache/cache_manager.dart';
 import 'providers/game_provider.dart';
 import 'theme/app_theme.dart';
-import 'screens/home/home_page.dart';
+import 'screens/splash/splash_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await HiveHelper.shared.setupHive();
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => GameProvider())],
@@ -23,7 +26,7 @@ class TinyLearnersApp extends StatelessWidget {
       title: 'Tiny Learners',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
