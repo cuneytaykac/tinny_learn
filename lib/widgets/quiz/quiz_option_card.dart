@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags_pro/country_flags_pro.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/data_models.dart';
 
 class QuizOptionCard extends StatelessWidget {
@@ -40,9 +41,10 @@ class QuizOptionCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(24),
-            border: isRight
-                ? Border.all(color: Colors.green, width: 4)
-                : isWrong
+            border:
+                isRight
+                    ? Border.all(color: Colors.green, width: 4)
+                    : isWrong
                     ? Border.all(color: Colors.red, width: 4)
                     : null,
             boxShadow: [
@@ -70,10 +72,10 @@ class QuizOptionCard extends StatelessWidget {
                   );
                 } else if (item.imagePath == null && item.color != null) {
                   // Solid Color (CategoryType.solidColor logic inference)
-                   // Ideally we should pass CategoryType, but checking color/image is a decent proxy if simple.
-                   // Actually, checking if it's NOT an image path usually implies color if we don't handle flags.
-                   // But let's assume 'color' property is valid for color category.
-                   return Center(
+                  // Ideally we should pass CategoryType, but checking color/image is a decent proxy if simple.
+                  // Actually, checking if it's NOT an image path usually implies color if we don't handle flags.
+                  // But let's assume 'color' property is valid for color category.
+                  return Center(
                     child: Container(
                       width: 100,
                       height: 100,
@@ -90,26 +92,39 @@ class QuizOptionCard extends StatelessWidget {
                       ),
                     ),
                   );
-                } 
-                
+                }
+
                 // Default Image
-                return item.imagePath != null
-                    ? Image.asset(
-                        item.imagePath!,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Icon(
-                            Icons.pets,
-                            size: 60,
-                            color: Colors.orangeAccent,
-                          );
-                        },
-                      )
-                    : const Icon(
-                        Icons.image_not_supported,
-                        size: 50,
-                        color: Colors.grey,
-                      );
+                if (item.imagePath != null) {
+                  return CachedNetworkImage(
+                    imageUrl: item.imagePath!,
+                    fit: BoxFit.contain,
+                    placeholder:
+                        (context, url) => const Icon(
+                          Icons.pets,
+                          size: 60,
+                          color: Colors.orangeAccent,
+                        ),
+                    errorWidget:
+                        (context, url, error) => Image.asset(
+                          item.imagePath!,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(
+                              Icons.pets,
+                              size: 60,
+                              color: Colors.orangeAccent,
+                            );
+                          },
+                        ),
+                  );
+                } else {
+                  return const Icon(
+                    Icons.image_not_supported,
+                    size: 50,
+                    color: Colors.grey,
+                  );
+                }
               },
             ),
           ),

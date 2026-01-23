@@ -14,6 +14,7 @@ class QuizProvider extends ChangeNotifier {
   bool _isAnswered = false;
   String? _selectedItemId;
   bool _isCorrect = false;
+  bool _isDisposed = false;
 
   // Controllers
   final ConfettiController _confettiController = ConfettiController(
@@ -44,6 +45,7 @@ class QuizProvider extends ChangeNotifier {
 
   @override
   void dispose() {
+    _isDisposed = true;
     _flutterTts.stop();
     _audioPlayer.dispose();
     _confettiController.dispose();
@@ -51,6 +53,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   void startNewRound() {
+    if (_isDisposed) return;
     _isAnswered = false;
     _selectedItemId = null;
     _isCorrect = false;
@@ -72,15 +75,19 @@ class QuizProvider extends ChangeNotifier {
 
     // Play question sound after delay
     Future.delayed(const Duration(milliseconds: 1500), () {
-      playQuestionSound();
+      if (!_isDisposed) playQuestionSound();
     });
   }
 
   Future<void> playQuestionSound() async {
-    await _flutterTts.stop();
-    await _audioPlayer.stop();
+    if (_isDisposed || _targetItem.audioPath.isEmpty) return;
     try {
-      if (_targetItem.audioPath.startsWith('http')) {
+      if (_audioPlayer.state == PlayerState.playing) {
+        await _audioPlayer.stop();
+      }
+
+      // Assume remote URL if it contains 'http', otherwise asset
+      if (_targetItem.audioPath.contains('http')) {
         await _audioPlayer.play(UrlSource(_targetItem.audioPath));
       } else {
         await _audioPlayer.play(AssetSource(_targetItem.audioPath));
@@ -103,22 +110,27 @@ class QuizProvider extends ChangeNotifier {
       _playSound('ui/applause.mp3');
 
       Future.delayed(const Duration(seconds: 3), () {
-        startNewRound();
+        if (!_isDisposed) startNewRound();
       });
     } else {
       _playSound('ui/wrong.mp3');
 
       Future.delayed(const Duration(seconds: 1), () {
-        _isAnswered = false;
-        _selectedItemId = null;
-        notifyListeners();
+        if (!_isDisposed) {
+          _isAnswered = false;
+          _selectedItemId = null;
+          notifyListeners();
+        }
       });
     }
   }
 
   Future<void> _playSound(String assetPath) async {
+    if (_isDisposed) return;
     try {
-      await _audioPlayer.stop();
+      if (_audioPlayer.state == PlayerState.playing) {
+        await _audioPlayer.stop();
+      }
       await _audioPlayer.play(AssetSource(assetPath));
     } catch (e) {
       debugPrint("Error playing sound: $e");
