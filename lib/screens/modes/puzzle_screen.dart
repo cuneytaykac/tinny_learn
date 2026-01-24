@@ -28,8 +28,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
   late ConfettiController _confettiController;
 
-  bool _showWin = false;
-
   @override
   void initState() {
     super.initState();
@@ -48,7 +46,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
 
   void _startNewRound() {
     setState(() {
-      _showWin = false;
       _completedIndices.clear();
 
       // Select random target
@@ -90,9 +87,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
   }
 
   void _handleWin() {
-    setState(() {
-      _showWin = true;
-    });
+    setState(() {});
     _confettiController.play();
     try {
       _audioPlayer.play(AssetSource('ui/applause.mp3'));
@@ -151,7 +146,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.3),
+                          color: Colors.black.withValues(alpha: 0.3),
                           blurRadius: 10,
                           spreadRadius: 2,
                           offset: const Offset(0, 5),

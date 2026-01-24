@@ -54,5 +54,18 @@ abstract class  LocaleKeys {
   static const memory_game_exit = 'memory_game.exit';
   static const memory_game_play_again = 'memory_game.play_again';
   static const memory_game = 'memory_game';
+  static const settings_title = 'settings.title';
+  static const settings_language = 'settings.language';
+  static const settings_about = 'settings.about';
+  static const settings_select_language = 'settings.select_language';
+  static const settings_turkish = 'settings.turkish';
+  static const settings_english = 'settings.english';
+  static const settings = 'settings';
+  static const about_title = 'about.title';
+  static const about_app_name = 'about.app_name';
+  static const about_version = 'about.version';
+  static const about_description = 'about.description';
+  static const about_developer = 'about.developer';
+  static const about = 'about';
 
 }

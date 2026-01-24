@@ -10,12 +10,13 @@ class AppTheme {
       surface: const Color(0xFFFFF8E1), // Light Yellow background
     ),
     scaffoldBackgroundColor: const Color(0xFFFFF8E1),
-    textTheme: GoogleFonts.fredokaTextTheme(), // Fun, rounded font for kids
+    textTheme:
+        GoogleFonts.quicksandTextTheme(), // Rounded font with great Turkish support
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
-      titleTextStyle: GoogleFonts.fredoka(
+      titleTextStyle: GoogleFonts.quicksand(
         fontSize: 28,
         fontWeight: FontWeight.bold,
         color: const Color(0xFF5D4037), // Dark Brown

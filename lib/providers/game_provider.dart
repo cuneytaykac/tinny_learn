@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../models/data_models.dart';
-import '../models/animal/animals.dart';
-import '../models/vehicle/vehicle.dart';
+
 import '../data/local/local.dart';
+import '../data/remote/remote.dart';
 import '../gen/locale_keys.g.dart';
 
 class GameProvider with ChangeNotifier {
@@ -19,9 +19,38 @@ class GameProvider with ChangeNotifier {
   final _vehicleLocalService = VehicleLocalService();
   final _colorLocalService = ColorLocalService();
 
+  // Remote services
+  final _animalService = AnimalService();
+  final _vehicleService = VehicleService();
+  final _colorService = ColorService();
+
   GameProvider() {
     _loadPreferences();
     loadCategories();
+  }
+
+  /// Reload data from remote services when language changes
+  Future<void> reloadDataForLanguage(String languageCode) async {
+    try {
+      // Fetch and save animals
+      final animals = await _animalService.getAnimals(language: languageCode);
+      await _animalLocalService.saveAnimals(animals);
+
+      // Fetch and save vehicles
+      final vehicles = await _vehicleService.getVehicles(
+        language: languageCode,
+      );
+      await _vehicleLocalService.saveVehicles(vehicles);
+
+      // Fetch and save colors (language independent)
+      final colors = await _colorService.fetchColors();
+      await _colorLocalService.saveColors(colors);
+
+      // Reload categories with new data
+      await loadCategories();
+    } catch (e) {
+      debugPrint('Error reloading data for language $languageCode: $e');
+    }
   }
 
   Future<void> loadCategories() async {

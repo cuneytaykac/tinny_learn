@@ -11,9 +11,31 @@ import '../modes/matching_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../gen/locale_keys.g.dart';
 import '../modes/memory_game_screen.dart';
+import '../settings/settings_screen.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Locale? _previousLocale;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final currentLocale = context.locale;
+
+    // If locale changed, reload categories to update translations
+    if (_previousLocale != null && _previousLocale != currentLocale) {
+      final gameProvider = Provider.of<GameProvider>(context, listen: false);
+      gameProvider.loadCategories();
+    }
+
+    _previousLocale = currentLocale;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +44,12 @@ class HomePage extends StatelessWidget {
         title: Text(LocaleKeys.home_title.tr()),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             onPressed: () {
-              // TODO: Settings dialog
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
             },
           ),
         ],

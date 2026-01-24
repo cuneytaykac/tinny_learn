@@ -144,10 +144,14 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Logo Animation
-              Icon(
-                    Icons.extension_rounded, // Placeholder for logo
-                    size: 100,
-                    color: Colors.orange,
+              ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.asset(
+                      'assets/logo/app_logo.jpg',
+                      width: 200,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
                   )
                   .animate()
                   .scale(duration: 600.ms, curve: Curves.elasticOut)

@@ -58,5 +58,20 @@
         "all_matched": "You matched all the flags!",
         "exit": "Exit",
         "play_again": "Play Again"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "about": "About",
+        "select_language": "Select Language",
+        "turkish": "Türkçe",
+        "english": "English"
+    },
+    "about": {
+        "title": "About",
+        "app_name": "Tiny Learners",
+        "version": "Version",
+        "description": "Fun learning app for kids",
+        "developer": "Developer"
     }
 }

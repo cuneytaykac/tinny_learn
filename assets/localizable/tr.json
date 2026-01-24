@@ -58,5 +58,20 @@
         "all_matched": "Tüm bayrakları eşleştirdin!",
         "exit": "Çıkış",
         "play_again": "Tekrar Oyna"
+    },
+    "settings": {
+        "title": "Ayarlar",
+        "language": "Dil",
+        "about": "Hakkında",
+        "select_language": "Dil Seçin",
+        "turkish": "Türkçe",
+        "english": "English"
+    },
+    "about": {
+        "title": "Hakkında",
+        "app_name": "Tiny Learners",
+        "version": "Versiyon",
+        "description": "Çocuklar için eğlenceli öğrenme uygulaması",
+        "developer": "Geliştirici"
     }
 }

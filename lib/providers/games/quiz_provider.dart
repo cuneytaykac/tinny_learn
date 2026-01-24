@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:easy_localization/easy_localization.dart';
 import '../../models/data_models.dart';
 
 class QuizProvider extends ChangeNotifier {
