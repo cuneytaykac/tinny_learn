@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../models/data_models.dart';
 import '../../providers/games/surprise_egg_provider.dart';
 import '../../widgets/egg/egg_widget.dart';
+import '../../gen/locale_keys.g.dart';
 
 class SurpriseEggScreen extends StatefulWidget {
   final Category category;
@@ -54,7 +57,7 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
               elevation: 0,
               leading: BackButton(color: provider.textColor),
               title: Text(
-                'Sürpriz Yumurta',
+                LocaleKeys.surprise_egg_title.tr(),
                 style: TextStyle(
                   color: provider.textColor,
                   fontWeight: FontWeight.bold,
@@ -125,7 +128,7 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
                                             ),
                                         const SizedBox(height: 5),
                                         Text(
-                                          "DOKUN",
+                                          LocaleKeys.surprise_egg_tap.tr(),
                                           style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w900,
@@ -180,11 +183,31 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
         Container(
           child:
               provider.targetItem.imagePath != null
-                  ? Image.asset(
-                    provider.targetItem.imagePath!,
+                  ? CachedNetworkImage(
+                    imageUrl: provider.targetItem.imagePath!,
                     width: 250,
                     height: 250,
                     fit: BoxFit.contain,
+                    placeholder:
+                        (context, url) => Container(
+                          width: 250,
+                          height: 250,
+                          color: Colors.grey.shade200,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                    errorWidget: (context, url, error) {
+                      return Container(
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.image_not_supported, size: 50),
+                      );
+                    },
                   )
                   : Container(
                     width: 200,

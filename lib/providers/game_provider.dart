@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../models/data_models.dart';
 import '../models/animal/animals.dart';
 import '../models/vehicle/vehicle.dart';
 import '../data/local/local.dart';
+import '../gen/locale_keys.g.dart';
 
 class GameProvider with ChangeNotifier {
   List<Category> _categories = [];
@@ -91,7 +93,7 @@ class GameProvider with ChangeNotifier {
         newCategories.add(
           Category(
             id: 'animals',
-            name: 'Hayvanlar',
+            name: LocaleKeys.categories_animals.tr(),
             iconPath: 'assets/images/animals/cat.webp',
             color: Color(0xFFFFE082),
             isPremium: false,
@@ -105,7 +107,7 @@ class GameProvider with ChangeNotifier {
         newCategories.add(
           Category(
             id: 'vehicles',
-            name: 'Taşıtlar',
+            name: LocaleKeys.categories_vehicles.tr(),
             iconPath: 'assets/images/vehicles/car.webp',
             color: Color(0xFF90CAF9),
             isPremium: false,
@@ -119,8 +121,8 @@ class GameProvider with ChangeNotifier {
         newCategories.add(
           Category(
             id: 'colors',
-            name: 'Renkler',
-            iconPath: 'assets/images/colors/colors_icon.webp',
+            name: LocaleKeys.categories_colors.tr(),
+            iconPath: '',
             color: const Color(0xFFEEEEEE),
             isPremium: false,
             type: CategoryType.image,
@@ -142,78 +144,78 @@ class GameProvider with ChangeNotifier {
   Category _getFlagsCategory() {
     return Category(
       id: 'flags',
-      name: 'Bayraklar',
-      iconPath: 'assets/images/colors/colors_icon.webp', // Placeholder
+      name: LocaleKeys.categories_flags.tr(),
+      iconPath: '',
       color: const Color(0xFFE1F5FE),
       isPremium: false,
       type: CategoryType.flag,
       items: [
         LearningItem(
           id: 'TR',
-          name: 'Türkiye',
+          name: LocaleKeys.countries_TR.tr(),
           imagePath: null,
           audioPath: 'audio/flags/tr.mp3',
           color: Colors.white,
         ),
         LearningItem(
           id: 'AZ',
-          name: 'Azerbaycan',
+          name: LocaleKeys.countries_AZ.tr(),
           imagePath: null,
           audioPath: 'audio/flags/az.mp3',
           color: Colors.blue,
         ),
         LearningItem(
           id: 'US',
-          name: 'Amerika',
+          name: LocaleKeys.countries_US.tr(),
           imagePath: null,
           audioPath: 'audio/flags/us.mp3',
           color: Colors.blue,
         ),
         LearningItem(
           id: 'DE',
-          name: 'Almanya',
+          name: LocaleKeys.countries_DE.tr(),
           imagePath: null,
           audioPath: 'audio/flags/de.mp3',
           color: Colors.yellow,
         ),
         LearningItem(
           id: 'FR',
-          name: 'Fransa',
+          name: LocaleKeys.countries_FR.tr(),
           imagePath: null,
           audioPath: 'audio/flags/fr.mp3',
           color: Colors.blue,
         ),
         LearningItem(
           id: 'GB',
-          name: 'İngiltere',
+          name: LocaleKeys.countries_GB.tr(),
           imagePath: null,
           audioPath: 'audio/flags/gb.mp3',
           color: Colors.red,
         ),
         LearningItem(
           id: 'IT',
-          name: 'İtalya',
+          name: LocaleKeys.countries_IT.tr(),
           imagePath: null,
           audioPath: 'audio/flags/it.mp3',
           color: Colors.green,
         ),
         LearningItem(
           id: 'RU',
-          name: 'Rusya',
+          name: LocaleKeys.countries_RU.tr(),
           imagePath: null,
           audioPath: 'audio/flags/ru.mp3',
           color: Colors.red,
         ),
         LearningItem(
           id: 'CN',
-          name: 'Çin',
+          name: LocaleKeys.countries_CN.tr(),
           imagePath: null,
           audioPath: 'audio/flags/cn.mp3',
           color: Colors.red,
         ),
         LearningItem(
           id: 'JP',
-          name: 'Japonya',
+          name: LocaleKeys.countries_JP.tr(),
           imagePath: null,
           audioPath: 'audio/flags/jp.mp3',
           color: Colors.white,

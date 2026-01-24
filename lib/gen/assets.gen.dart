@@ -7,8 +7,17 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
+class $AssetsLocalizableGen {
+  const $AssetsLocalizableGen();
+
+  /// File path: assets/localizable/en.json
+  String get en => 'assets/localizable/en.json';
+
+  /// File path: assets/localizable/tr.json
+  String get tr => 'assets/localizable/tr.json';
+
+  /// List of all assets
+  List<String> get values => [en, tr];
 }
 
 class $AssetsUiGen {
@@ -27,6 +36,6 @@ class $AssetsUiGen {
 class Assets {
   const Assets._();
 
-  static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLocalizableGen localizable = $AssetsLocalizableGen();
   static const $AssetsUiGen ui = $AssetsUiGen();
 }

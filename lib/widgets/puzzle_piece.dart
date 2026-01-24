@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../models/data_models.dart';
 import '../utils/jigsaw_clipper.dart';
 
@@ -104,14 +105,21 @@ class PuzzlePiece extends StatelessWidget {
                         height: 200,
                         child:
                             item.imagePath != null
-                                ? Image.asset(
-                                  item.imagePath!,
+                                ? CachedNetworkImage(
+                                  imageUrl: item.imagePath!,
                                   fit: BoxFit.fill,
-                                  errorBuilder: (context, error, stackTrace) {
+                                  placeholder:
+                                      (context, url) => Container(
+                                        color: Colors.grey.shade200,
+                                        child: const Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      ),
+                                  errorWidget: (context, url, error) {
                                     return Container(
                                       color: Colors.grey.shade300,
                                       child: const Icon(
-                                        Icons.pets, // Cute fallback
+                                        Icons.pets,
                                         size: 40,
                                         color: Colors.orangeAccent,
                                       ),

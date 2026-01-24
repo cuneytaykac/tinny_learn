@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:country_flags_pro/country_flags_pro.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tiny_learners/gen/assets.gen.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
@@ -137,7 +138,11 @@ class _FlashcardItemState extends State<FlashcardItem>
               children: [
                 // Turkish Name Row
                 GestureDetector(
-                  onTap: () => widget.onSpeak(widget.item.name, "tr-TR"),
+                  onTap: () {
+                    final locale = context.locale.languageCode;
+                    final ttsLocale = locale == 'tr' ? 'tr-TR' : 'en-US';
+                    widget.onSpeak(widget.item.name, ttsLocale);
+                  },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,

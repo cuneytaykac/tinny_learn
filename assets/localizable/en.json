@@ -1,0 +1,62 @@
+{
+    "splash": {
+        "starting": "Starting...",
+        "setting_language": "Setting language...",
+        "loading_animals": "Loading animals...",
+        "loading_vehicles": "Loading vehicles...",
+        "loading_colors": "Loading colors...",
+        "ready": "Ready!",
+        "error": "Error occurred!"
+    },
+    "home": {
+        "title": "Tiny Learners",
+        "lets_learn": "Let's Learn!",
+        "what_to_do": "What would you like to do?",
+        "category_locked": "This category is locked!"
+    },
+    "modes": {
+        "learn": "Learn",
+        "quiz": "Quiz",
+        "matching": "Matching",
+        "memory": "Memory Game",
+        "puzzle": "Puzzle",
+        "surprise_egg": "Surprise Egg"
+    },
+    "categories": {
+        "animals": "Animals",
+        "vehicles": "Vehicles",
+        "colors": "Colors",
+        "flags": "Flags"
+    },
+    "countries": {
+        "TR": "Turkey",
+        "AZ": "Azerbaijan",
+        "US": "United States",
+        "DE": "Germany",
+        "FR": "France",
+        "GB": "United Kingdom",
+        "IT": "Italy",
+        "RU": "Russia",
+        "CN": "China",
+        "JP": "Japan"
+    },
+    "quiz": {
+        "title": "{} Quiz",
+        "which_is": "Which is \"{}\"?"
+    },
+    "puzzle": {
+        "title": "Let's Make a Puzzle"
+    },
+    "surprise_egg": {
+        "title": "Surprise Egg",
+        "tap": "TAP"
+    },
+    "memory_game": {
+        "title": "Memory Game",
+        "congratulations": "🎉 Congratulations! 🎉",
+        "time": "Time: {}",
+        "all_matched": "You matched all the flags!",
+        "exit": "Exit",
+        "play_again": "Play Again"
+    }
+}

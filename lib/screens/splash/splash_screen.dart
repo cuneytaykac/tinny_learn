@@ -1,6 +1,7 @@
-import '../../utils/language/language_helper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:tiny_learners/gen/locale_keys.g.dart';
 import '../../data/remote/remote.dart';
 import '../../data/local/local.dart';
 import '../../providers/game_provider.dart';
@@ -24,12 +25,19 @@ class _SplashScreenState extends State<SplashScreen> {
   final _colorLocalService = ColorLocalService();
 
   double _progress = 0.0;
-  String _statusText = 'Başlıyor...';
+  String _statusText = '';
+  bool _isInitialized = false;
 
   @override
-  void initState() {
-    super.initState();
-    _initializeApp();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isInitialized) {
+      _isInitialized = true;
+      _statusText = LocaleKeys.splash_starting.tr();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _initializeApp();
+      });
+    }
   }
 
   Future<void> _initializeApp() async {
@@ -38,24 +46,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Start Loading Data
     try {
-      // 0. Detect Device Language
+      // 0. Detect Device Language (Handled by EasyLocalization)
       setState(() {
-        _statusText = 'Dil ayarlanıyor... / Setting language...';
+        _statusText = LocaleKeys.splash_setting_language.tr();
         _progress = 0.1;
       });
 
-      // Use helper to get language
-      final String languageCode = await LanguageHelper.getAppLanguage();
+      final String languageCode = context.locale.languageCode;
 
       // Wait 1 second to let user read "Setting language..."
       await Future.delayed(const Duration(seconds: 1));
 
       // 1. Fetch Animals
       setState(() {
-        _statusText =
-            languageCode == 'tr'
-                ? 'Hayvanlar yükleniyor...'
-                : 'Loading animals...';
+        _statusText = LocaleKeys.splash_loading_animals.tr();
         _progress = 0.3;
       });
 
@@ -67,10 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       // 2. Fetch Vehicles
       setState(() {
-        _statusText =
-            languageCode == 'tr'
-                ? 'Araçlar yükleniyor...'
-                : 'Loading vehicles...';
+        _statusText = LocaleKeys.splash_loading_vehicles.tr();
         _progress = 0.6;
       });
 
@@ -84,10 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       // 3. Fetch Colors
       setState(() {
-        _statusText =
-            languageCode == 'tr'
-                ? 'Renkler yükleniyor...'
-                : 'Loading colors...';
+        _statusText = LocaleKeys.splash_loading_colors.tr();
         _progress = 0.9;
       });
 
@@ -106,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
       await Future.delayed(const Duration(seconds: 1));
 
       setState(() {
-        _statusText = languageCode == 'tr' ? 'Hazır!' : 'Ready!';
+        _statusText = LocaleKeys.splash_ready.tr();
         _progress = 1.0;
       });
 
@@ -121,9 +119,8 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     } catch (e) {
       debugPrint('Splash Error: $e');
-      // TODO: Handle offline mode or retry
       setState(() {
-        _statusText = 'Hata oluştu! / Error occurred!';
+        _statusText = LocaleKeys.splash_error.tr();
       });
     }
   }

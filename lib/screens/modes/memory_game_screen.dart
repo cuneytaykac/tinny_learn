@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:confetti/confetti.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 import '../../providers/games/memory_game_provider.dart';
 import '../../widgets/memory/memory_card.dart';
+import '../../gen/locale_keys.g.dart';
 
 class MemoryGameScreen extends StatelessWidget {
   final Category category;
@@ -23,10 +25,15 @@ class MemoryGameScreen extends StatelessWidget {
             ),
             title: Column(
               children: [
-                const Text("🎉 Tebrikler! 🎉", style: TextStyle(fontSize: 24)),
+                const Text(
+                  LocaleKeys.memory_game_congratulations,
+                  style: TextStyle(fontSize: 24),
+                ).tr(),
                 const SizedBox(height: 8),
                 Text(
-                  "Süre: ${provider.formattedTime}",
+                  LocaleKeys.memory_game_time.tr(
+                    args: [provider.formattedTime],
+                  ),
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -35,8 +42,8 @@ class MemoryGameScreen extends StatelessWidget {
                 ),
               ],
             ),
-            content: const Text(
-              "Tüm bayrakları eşleştirdin!",
+            content: Text(
+              LocaleKeys.memory_game_all_matched.tr(),
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18),
             ),
@@ -46,8 +53,8 @@ class MemoryGameScreen extends StatelessWidget {
                   Navigator.pop(context); // Close dialog
                   Navigator.pop(context); // Close screen
                 },
-                child: const Text(
-                  "Çıkış",
+                child: Text(
+                  LocaleKeys.memory_game_exit.tr(),
                   style: TextStyle(fontSize: 18, color: Colors.grey),
                 ),
               ),
@@ -66,8 +73,8 @@ class MemoryGameScreen extends StatelessWidget {
                     vertical: 12,
                   ),
                 ),
-                child: const Text(
-                  "Tekrar Oyna",
+                child: Text(
+                  LocaleKeys.memory_game_play_again.tr(),
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
@@ -98,7 +105,7 @@ class MemoryGameScreen extends StatelessWidget {
                 },
               ),
               title: Text(
-                "Hafıza Oyunu",
+                LocaleKeys.memory_game_title.tr(),
                 style: TextStyle(
                   color: AppTheme.primaryTextColor,
                   fontWeight: FontWeight.bold,

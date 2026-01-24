@@ -8,6 +8,8 @@ import '../modes/quiz_screen.dart';
 import '../modes/puzzle_screen.dart';
 import '../modes/surprise_egg_screen.dart';
 import '../modes/matching_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../../gen/locale_keys.g.dart';
 import '../modes/memory_game_screen.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,7 +19,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tiny Learners'),
+        title: Text(LocaleKeys.home_title.tr()),
         actions: [
           IconButton(
             icon: Icon(Icons.settings),
@@ -36,7 +38,7 @@ class HomePage extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Text(
-                  'Haydi Öğrenelim!',
+                  LocaleKeys.home_lets_learn.tr(),
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     color: Theme.of(context).primaryColorDark,
                     fontWeight: FontWeight.bold,
@@ -73,7 +75,7 @@ class HomePage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(24),
                                     ),
                                     title: Text(
-                                      "Ne yapmak istersin?",
+                                      LocaleKeys.home_what_to_do.tr(),
                                       textAlign: TextAlign.center,
                                       style: Theme.of(
                                         context,
@@ -86,7 +88,7 @@ class HomePage extends StatelessWidget {
                                       children: [
                                         _buildModeOption(
                                           context,
-                                          title: "Öğren",
+                                          title: LocaleKeys.modes_learn.tr(),
                                           icon: Icons.school_rounded,
                                           color: Colors.orangeAccent,
                                           onTap: () {
@@ -107,7 +109,7 @@ class HomePage extends StatelessWidget {
                                         if (category.id == 'colors') ...[
                                           _buildModeOption(
                                             context,
-                                            title: "Bulmaca",
+                                            title: LocaleKeys.modes_quiz.tr(),
                                             icon: Icons.extension_rounded,
                                             color: Colors.lightBlueAccent,
                                             onTap: () {
@@ -126,7 +128,8 @@ class HomePage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           _buildModeOption(
                                             context,
-                                            title: "Eşleştirme",
+                                            title:
+                                                LocaleKeys.modes_matching.tr(),
                                             icon: Icons.compare_arrows_rounded,
                                             color: Colors.lightGreen,
                                             onTap: () {
@@ -146,7 +149,7 @@ class HomePage extends StatelessWidget {
                                         ] else if (category.id == 'flags') ...[
                                           _buildModeOption(
                                             context,
-                                            title: "Bulmaca",
+                                            title: LocaleKeys.modes_quiz.tr(),
                                             icon: Icons.extension_rounded,
                                             color: Colors.lightBlueAccent,
                                             onTap: () {
@@ -165,7 +168,7 @@ class HomePage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           _buildModeOption(
                                             context,
-                                            title: "Hafıza Oyunu",
+                                            title: LocaleKeys.modes_memory.tr(),
                                             icon: Icons.grid_view_rounded,
                                             color: Colors.purpleAccent,
                                             onTap: () {
@@ -185,7 +188,7 @@ class HomePage extends StatelessWidget {
                                         ] else ...[
                                           _buildModeOption(
                                             context,
-                                            title: "Bulmaca",
+                                            title: LocaleKeys.modes_quiz.tr(),
                                             icon: Icons.extension_rounded,
                                             color: Colors.lightBlueAccent,
                                             onTap: () {
@@ -204,7 +207,7 @@ class HomePage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           _buildModeOption(
                                             context,
-                                            title: "Puzzle",
+                                            title: LocaleKeys.modes_puzzle.tr(),
                                             icon: Icons.grid_view_rounded,
                                             color: Colors.purpleAccent,
                                             onTap: () {
@@ -223,7 +226,9 @@ class HomePage extends StatelessWidget {
                                           const SizedBox(height: 16),
                                           _buildModeOption(
                                             context,
-                                            title: "Sürpriz Yumurta",
+                                            title:
+                                                LocaleKeys.modes_surprise_egg
+                                                    .tr(),
                                             icon: Icons.egg_rounded,
                                             color: Colors.pinkAccent,
                                             onTap: () {
@@ -248,8 +253,10 @@ class HomePage extends StatelessWidget {
                           } else {
                             // Show lock dialog
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Bu kategori kilitli!'),
+                              SnackBar(
+                                content: Text(
+                                  LocaleKeys.home_category_locked.tr(),
+                                ),
                               ),
                             );
                           }

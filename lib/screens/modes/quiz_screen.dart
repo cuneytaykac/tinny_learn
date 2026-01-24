@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:confetti/confetti.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 import '../../providers/games/quiz_provider.dart';
 import '../../widgets/quiz/quiz_option_card.dart';
+import '../../gen/locale_keys.g.dart';
 
 class QuizScreen extends StatelessWidget {
   final Category category;
@@ -13,8 +15,10 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.locale.languageCode;
+
     return ChangeNotifierProvider(
-      create: (_) => QuizProvider(category: category),
+      create: (_) => QuizProvider(category: category, locale: locale),
       child: Consumer<QuizProvider>(
         builder: (context, provider, _) {
           return Scaffold(
@@ -25,7 +29,7 @@ class QuizScreen extends StatelessWidget {
               elevation: 0,
               leading: BackButton(color: AppTheme.primaryTextColor),
               title: Text(
-                '${category.name} Bulmaca',
+                LocaleKeys.quiz_title.tr(args: [category.name]),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   color: AppTheme.primaryTextColor,
                   fontWeight: FontWeight.bold,
@@ -67,7 +71,9 @@ class QuizScreen extends StatelessWidget {
                               const SizedBox(width: 16),
                               Flexible(
                                 child: Text(
-                                  'Hangisi "${provider.targetItem.name}"?',
+                                  LocaleKeys.quiz_which_is.tr(
+                                    args: [provider.targetItem.name],
+                                  ),
                                   style: Theme.of(
                                     context,
                                   ).textTheme.headlineSmall?.copyWith(

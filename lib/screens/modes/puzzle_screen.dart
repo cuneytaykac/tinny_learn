@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/puzzle_piece.dart';
 import '../../utils/jigsaw_clipper.dart';
+import '../../gen/locale_keys.g.dart';
 
 class PuzzleScreen extends StatefulWidget {
   final Category category;
@@ -114,7 +117,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
         elevation: 0,
         leading: BackButton(color: AppTheme.primaryTextColor),
         title: Text(
-          'Puzzle Yapalım',
+          LocaleKeys.puzzle_title.tr(),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: AppTheme.primaryTextColor,
             fontWeight: FontWeight.bold,
@@ -168,17 +171,26 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
                                 borderRadius: BorderRadius.circular(16),
                                 child:
                                     _targetItem.imagePath != null
-                                        ? Image.asset(
-                                          _targetItem.imagePath!,
+                                        ? CachedNetworkImage(
+                                          imageUrl: _targetItem.imagePath!,
                                           fit: BoxFit.cover,
-                                          errorBuilder:
-                                              (c, o, s) => Container(
-                                                color: Colors.grey.shade300,
-                                                child: const Icon(
-                                                  Icons.image_not_supported,
-                                                  size: 50,
+                                          placeholder:
+                                              (context, url) => Container(
+                                                color: Colors.grey.shade200,
+                                                child: const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
                                                 ),
                                               ),
+                                          errorWidget: (context, url, error) {
+                                            return Container(
+                                              color: Colors.grey.shade300,
+                                              child: const Icon(
+                                                Icons.image_not_supported,
+                                                size: 50,
+                                              ),
+                                            );
+                                          },
                                         )
                                         : Container(color: _targetItem.color),
                               ),

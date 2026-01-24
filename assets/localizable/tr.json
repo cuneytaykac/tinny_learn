@@ -1,0 +1,62 @@
+{
+    "splash": {
+        "starting": "Başlıyor...",
+        "setting_language": "Dil ayarlanıyor...",
+        "loading_animals": "Hayvanlar yükleniyor...",
+        "loading_vehicles": "Araçlar yükleniyor...",
+        "loading_colors": "Renkler yükleniyor...",
+        "ready": "Hazır!",
+        "error": "Hata oluştu!"
+    },
+    "home": {
+        "title": "Tiny Learners",
+        "lets_learn": "Haydi Öğrenelim!",
+        "what_to_do": "Ne yapmak istersin?",
+        "category_locked": "Bu kategori kilitli!"
+    },
+    "modes": {
+        "learn": "Öğren",
+        "quiz": "Bulmaca",
+        "matching": "Eşleştirme",
+        "memory": "Hafıza Oyunu",
+        "puzzle": "Puzzle",
+        "surprise_egg": "Sürpriz Yumurta"
+    },
+    "categories": {
+        "animals": "Hayvanlar",
+        "vehicles": "Taşıtlar",
+        "colors": "Renkler",
+        "flags": "Bayraklar"
+    },
+    "countries": {
+        "TR": "Türkiye",
+        "AZ": "Azerbaycan",
+        "US": "Amerika",
+        "DE": "Almanya",
+        "FR": "Fransa",
+        "GB": "İngiltere",
+        "IT": "İtalya",
+        "RU": "Rusya",
+        "CN": "Çin",
+        "JP": "Japonya"
+    },
+    "quiz": {
+        "title": "{} Bulmaca",
+        "which_is": "Hangisi \"{}\"?"
+    },
+    "puzzle": {
+        "title": "Puzzle Yapalım"
+    },
+    "surprise_egg": {
+        "title": "Sürpriz Yumurta",
+        "tap": "DOKUN"
+    },
+    "memory_game": {
+        "title": "Hafıza Oyunu",
+        "congratulations": "🎉 Tebrikler! 🎉",
+        "time": "Süre: {}",
+        "all_matched": "Tüm bayrakları eşleştirdin!",
+        "exit": "Çıkış",
+        "play_again": "Tekrar Oyna"
+    }
+}

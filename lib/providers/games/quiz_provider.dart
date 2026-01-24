@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../models/data_models.dart';
 
 class QuizProvider extends ChangeNotifier {
@@ -32,13 +33,14 @@ class QuizProvider extends ChangeNotifier {
   bool get isCorrect => _isCorrect;
   ConfettiController get confettiController => _confettiController;
 
-  QuizProvider({required this.category}) {
-    _initTts();
+  QuizProvider({required this.category, required String locale}) {
+    _initTts(locale);
     startNewRound();
   }
 
-  Future<void> _initTts() async {
-    await _flutterTts.setLanguage("tr-TR");
+  Future<void> _initTts(String locale) async {
+    final ttsLocale = locale == 'tr' ? 'tr-TR' : 'en-US';
+    await _flutterTts.setLanguage(ttsLocale);
     await _flutterTts.setSpeechRate(0.5);
     await _flutterTts.awaitSpeakCompletion(true);
   }
