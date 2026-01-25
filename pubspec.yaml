@@ -51,6 +51,9 @@ dependencies:
   cached_network_image: ^3.4.1
   easy_localization: ^3.0.8
   package_info_plus: ^9.0.0
+  # Routing & Connectivity
+  go_router: ^14.7.3
+  connectivity_plus: ^6.1.2
  
 
 dev_dependencies:

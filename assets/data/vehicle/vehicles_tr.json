@@ -1,0 +1,102 @@
+[
+    {
+        "name": "Ambulans",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/ambulance.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/ambulance.mp3"
+    },
+    {
+        "name": "İtfaiye",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/fire_truck.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/fire_truck.mp3"
+    },
+    {
+        "name": "Araba",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/car.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/car.mp3"
+    },
+    {
+        "name": "Otobüs",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/bus.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/bus.mp3"
+    },
+    {
+        "name": "Uçak",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/plane.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/plane.mp3"
+    },
+    {
+        "name": "Tren",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/train.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/train.mp3"
+    },
+    {
+        "name": "Gemi",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/ship.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/ship.mp3"
+    },
+    {
+        "name": "Bisiklet",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/bicycle.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/bicycle.mp3"
+    },
+    {
+        "name": "Kamyon",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/truck.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/truck.mp3"
+    },
+    {
+        "name": "Helikopter",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/helicopter.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/helicopter.mp3"
+    },
+    {
+        "name": "Motosiklet",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/motorcycle.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/motorcycle.mp3"
+    },
+    {
+        "name": "Traktör",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/tractor.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/tractor.mp3"
+    },
+    {
+        "name": "Polis Arabası",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/police_car.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/police_car.mp3"
+    },
+    {
+        "name": "Taksi",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/taxi.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/taxi.mp3"
+    },
+    {
+        "name": "Kepçe",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/excavator.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/excavator.mp3"
+    },
+    {
+        "name": "Beton Mikseri",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/concrete_mixer.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/concrete_mixer.mp3"
+    },
+    {
+        "name": "Balon",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/hot_air_balloon.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/hot_air_balloon.mp3"
+    },
+    {
+        "name": "Denizaltı",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/submarine.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/submarine.mp3"
+    },
+    {
+        "name": "Roket",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/rocket.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/rocket.mp3"
+    },
+    {
+        "name": "Scooter",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/vehicles/scooter.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/vehicles/scooter.mp3"
+    }
+]

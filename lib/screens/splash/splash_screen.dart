@@ -1,11 +1,15 @@
+import 'package:flutter/services.dart';
+import 'dart:convert';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiny_learners/gen/locale_keys.g.dart';
 import '../../data/remote/remote.dart';
 import '../../data/local/local.dart';
 import '../../providers/game_provider.dart';
-import '../home/home_page.dart';
+import '../../providers/connectivity_provider.dart';
+import '../../models/responseColor/response_color.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,38 +30,91 @@ class _SplashScreenState extends State<SplashScreen> {
 
   double _progress = 0.0;
   String _statusText = '';
-  bool _isInitialized = false;
+  // State variables
+  bool _isInitStarted = false;
+  bool _isInitCompleted = false;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (!_isInitialized) {
-      _isInitialized = true;
-      _statusText = LocaleKeys.splash_starting.tr();
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _initializeApp();
+  void initState() {
+    super.initState();
+    // Start listening to connectivity changes
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkConnectivityAndInit();
+    });
+  }
+
+  void _checkConnectivityAndInit() {
+    final connectivityProvider = Provider.of<ConnectivityProvider>(
+      context,
+      listen: false,
+    );
+
+    // Initial check
+    if (connectivityProvider.hasInternet) {
+      _startInitialization();
+    } else {
+      // If no internet initially, set status (The wrapper will cover this screen anyway)
+      setState(() {
+        _statusText = LocaleKeys.no_internet_checking.tr();
       });
+    }
+
+    // Listen for changes
+    connectivityProvider.addListener(_connectivityListener);
+  }
+
+  void _connectivityListener() {
+    final connectivityProvider = Provider.of<ConnectivityProvider>(
+      context,
+      listen: false,
+    );
+
+    if (connectivityProvider.hasInternet &&
+        !_isInitStarted &&
+        !_isInitCompleted) {
+      _startInitialization();
     }
   }
 
+  @override
+  void dispose() {
+    final connectivityProvider = Provider.of<ConnectivityProvider>(
+      context,
+      listen: false,
+    );
+    connectivityProvider.removeListener(_connectivityListener);
+    super.dispose();
+  }
+
+  Future<void> _startInitialization() async {
+    if (_isInitStarted) return;
+
+    setState(() {
+      _isInitStarted = true;
+      _statusText = LocaleKeys.splash_starting.tr();
+    });
+
+    await _initializeApp();
+  }
+
   Future<void> _initializeApp() async {
-    // Minimum Splash Duration (Safety net, though explicit delays will exceed this)
+    // Minimum Splash Duration (Safety net)
     final minDuration = Future.delayed(const Duration(seconds: 2));
 
-    // Start Loading Data
     try {
-      // 0. Detect Device Language (Handled by EasyLocalization)
+      // 0. Detect Device Language
+      if (!mounted) return;
+
       setState(() {
         _statusText = LocaleKeys.splash_setting_language.tr();
         _progress = 0.1;
       });
 
       final String languageCode = context.locale.languageCode;
-
-      // Wait 1 second to let user read "Setting language..."
       await Future.delayed(const Duration(seconds: 1));
 
       // 1. Fetch Animals
+      if (!mounted) return;
       setState(() {
         _statusText = LocaleKeys.splash_loading_animals.tr();
         _progress = 0.3;
@@ -65,11 +122,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
       final animals = await _animalService.getAnimals(language: languageCode);
       await _animalLocalService.saveAnimals(animals);
-
-      // Wait 1 second to let user read "Loading animals..."
       await Future.delayed(const Duration(seconds: 1));
 
       // 2. Fetch Vehicles
+      if (!mounted) return;
       setState(() {
         _statusText = LocaleKeys.splash_loading_vehicles.tr();
         _progress = 0.6;
@@ -79,20 +135,16 @@ class _SplashScreenState extends State<SplashScreen> {
         language: languageCode,
       );
       await _vehicleLocalService.saveVehicles(vehicles);
-
-      // Wait 1 second to let user read "Loading vehicles..."
       await Future.delayed(const Duration(seconds: 1));
 
       // 3. Fetch Colors
+      if (!mounted) return;
       setState(() {
         _statusText = LocaleKeys.splash_loading_colors.tr();
         _progress = 0.9;
       });
 
-      // Colors are language independent for now (fetching image list),
-      // names are mapped locally or extracted.
-      final colors = await _colorService.fetchColors();
-      await _colorLocalService.saveColors(colors);
+      await _loadColors();
 
       if (mounted) {
         await Provider.of<GameProvider>(
@@ -103,25 +155,56 @@ class _SplashScreenState extends State<SplashScreen> {
 
       await Future.delayed(const Duration(seconds: 1));
 
-      setState(() {
-        _statusText = LocaleKeys.splash_ready.tr();
-        _progress = 1.0;
-      });
+      if (mounted) {
+        setState(() {
+          _statusText = LocaleKeys.splash_ready.tr();
+          _progress = 1.0;
+        });
+      }
 
-      // Wait for minimum duration (will be instant if >2s passed)
+      // Wait for minimum duration
       await minDuration;
+
+      _isInitCompleted = true;
 
       // Navigate to Home
       if (mounted) {
-        Navigator.of(
-          context,
-        ).pushReplacement(MaterialPageRoute(builder: (_) => const HomePage()));
+        context.go('/home');
       }
     } catch (e) {
       debugPrint('Splash Error: $e');
-      setState(() {
-        _statusText = LocaleKeys.splash_error.tr();
-      });
+      if (mounted) {
+        setState(() {
+          _statusText = LocaleKeys.splash_error.tr();
+          _isInitStarted = false; // Allow retrying if error occurs
+        });
+      }
+    }
+  }
+
+  /// Load colors with fallback to local JSON
+  Future<void> _loadColors() async {
+    try {
+      // Try to fetch from API
+      final colors = await _colorService.fetchColors();
+      await _colorLocalService.saveColors(colors);
+      debugPrint('✅ Colors loaded from API');
+    } catch (e) {
+      debugPrint('⚠️ API failed for colors, loading from local assets: $e');
+      // Fallback to local JSON
+      try {
+        const assetPath = 'assets/data/color/color_image.json';
+
+        final jsonString = await rootBundle.loadString(assetPath);
+        final List<dynamic> jsonList = jsonDecode(jsonString);
+        final colors =
+            jsonList.map((json) => ResponseColor.fromJson(json)).toList();
+        await _colorLocalService.saveColors(colors);
+        debugPrint('✅ Colors loaded from local assets');
+      } catch (fallbackError) {
+        debugPrint('❌ Failed to load colors from local assets: $fallbackError');
+        // Don't rethrow - just log the error and continue
+      }
     }
   }
 

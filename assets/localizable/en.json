@@ -67,6 +67,11 @@
         "turkish": "Türkçe",
         "english": "English"
     },
+    "no_internet": {
+        "title": "No Internet Connection",
+        "message": "Please check your internet connection and try again.",
+        "checking": "Checking connection..."
+    },
     "about": {
         "title": "About",
         "app_name": "Tiny Learners",

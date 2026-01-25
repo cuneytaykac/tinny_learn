@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 import '../../gen/locale_keys.g.dart';
 import '../../theme/app_theme.dart';
-import 'language_screen.dart';
-import 'about_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -37,10 +36,7 @@ class SettingsScreen extends StatelessWidget {
                     ? LocaleKeys.settings_turkish.tr()
                     : LocaleKeys.settings_english.tr(),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LanguageScreen()),
-              );
+              context.go('/settings/language');
             },
           ),
           const SizedBox(height: 12),
@@ -49,10 +45,7 @@ class SettingsScreen extends StatelessWidget {
             icon: Icons.info_rounded,
             title: LocaleKeys.settings_about.tr(),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AboutScreen()),
-              );
+              context.go('/settings/about');
             },
           ),
         ],

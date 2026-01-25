@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:go_router/go_router.dart';
 import '../../providers/game_provider.dart';
 import '../../models/data_models.dart';
-import '../modes/flashcard_screen.dart';
-import '../modes/quiz_screen.dart';
-import '../modes/puzzle_screen.dart';
-import '../modes/surprise_egg_screen.dart';
-import '../modes/matching_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../gen/locale_keys.g.dart';
-import '../modes/memory_game_screen.dart';
-import '../settings/settings_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,10 +40,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
-              );
+              context.push('/settings');
             },
           ),
         ],
@@ -118,15 +109,8 @@ class _HomePageState extends State<HomePage> {
                                           color: Colors.orangeAccent,
                                           onTap: () {
                                             Navigator.pop(context);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder:
-                                                    (context) =>
-                                                        FlashcardScreen(
-                                                          category: category,
-                                                        ),
-                                              ),
+                                            context.push(
+                                              '/flashcard/${category.id}',
                                             );
                                           },
                                         ),
@@ -139,14 +123,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.lightBlueAccent,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) => QuizScreen(
-                                                        category: category,
-                                                      ),
-                                                ),
+                                              context.push(
+                                                '/quiz/${category.id}',
                                               );
                                             },
                                           ),
@@ -159,15 +137,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.lightGreen,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) =>
-                                                          MatchingScreen(
-                                                            category: category,
-                                                          ),
-                                                ),
+                                              context.push(
+                                                '/matching/${category.id}',
                                               );
                                             },
                                           ),
@@ -179,14 +150,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.lightBlueAccent,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) => QuizScreen(
-                                                        category: category,
-                                                      ),
-                                                ),
+                                              context.push(
+                                                '/quiz/${category.id}',
                                               );
                                             },
                                           ),
@@ -198,15 +163,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.purpleAccent,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) =>
-                                                          MemoryGameScreen(
-                                                            category: category,
-                                                          ),
-                                                ),
+                                              context.push(
+                                                '/memory/${category.id}',
                                               );
                                             },
                                           ),
@@ -218,14 +176,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.lightBlueAccent,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) => QuizScreen(
-                                                        category: category,
-                                                      ),
-                                                ),
+                                              context.push(
+                                                '/quiz/${category.id}',
                                               );
                                             },
                                           ),
@@ -237,14 +189,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.purpleAccent,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) => PuzzleScreen(
-                                                        category: category,
-                                                      ),
-                                                ),
+                                              context.push(
+                                                '/puzzle/${category.id}',
                                               );
                                             },
                                           ),
@@ -258,15 +204,8 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.pinkAccent,
                                             onTap: () {
                                               Navigator.pop(context);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder:
-                                                      (context) =>
-                                                          SurpriseEggScreen(
-                                                            category: category,
-                                                          ),
-                                                ),
+                                              context.push(
+                                                '/surprise-egg/${category.id}',
                                               );
                                             },
                                           ),

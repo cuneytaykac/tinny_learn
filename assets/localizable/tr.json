@@ -67,6 +67,11 @@
         "turkish": "Türkçe",
         "english": "English"
     },
+    "no_internet": {
+        "title": "İnternet Bağlantısı Yok",
+        "message": "Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.",
+        "checking": "Bağlantı kontrol ediliyor..."
+    },
     "about": {
         "title": "Hakkında",
         "app_name": "Tiny Learners",

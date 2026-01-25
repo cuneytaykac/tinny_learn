@@ -1,0 +1,132 @@
+[
+    {
+        "name": "Cat",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/cat.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/cat.mp3"
+    },
+    {
+        "name": "Dog",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/dog.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/dog.mp3"
+    },
+    {
+        "name": "Lion",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/lion.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/lion.mp3"
+    },
+    {
+        "name": "Elephant",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/elephant.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/elephant.mp3"
+    },
+    {
+        "name": "Giraffe",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/giraffe.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/giraffe.mp3"
+    },
+    {
+        "name": "Monkey",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/monkey.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/monkey.mp3"
+    },
+    {
+        "name": "Cow",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/cow.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/cow.mp3"
+    },
+    {
+        "name": "Sheep",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/sheep.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/sheep.mp3"
+    },
+    {
+        "name": "Chicken",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/chicken.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/chicken.mp3"
+    },
+    {
+        "name": "Horse",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/horse.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/horse.mp3"
+    },
+    {
+        "name": "Tiger",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/tiger.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/tiger.mp3"
+    },
+    {
+        "name": "Rabbit",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/rabbit.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/rabbit.mp3"
+    },
+    {
+        "name": "Bear",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/bear.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/bear.mp3"
+    },
+    {
+        "name": "Frog",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/frog.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/frog.mp3"
+    },
+    {
+        "name": "Bee",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/bee.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/bee.mp3"
+    },
+    {
+        "name": "Butterfly",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/butterfly.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/butterfly.mp3"
+    },
+    {
+        "name": "Penguin",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/penguin.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/penguin.mp3"
+    },
+    {
+        "name": "Zebra",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/zebra.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/zebra.mp3"
+    },
+    {
+        "name": "Kangaroo",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/kangaroo.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/kangaroo.mp3"
+    },
+    {
+        "name": "Panda",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/panda.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/panda.mp3"
+    },
+    {
+        "name": "Crocodile",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/crocodile.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/crocodile.mp3"
+    },
+    {
+        "name": "Hippo",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/hippo.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/hippo.mp3"
+    },
+    {
+        "name": "Owl",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/owl.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/owl.mp3"
+    },
+    {
+        "name": "Fox",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/fox.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/fox.mp3"
+    },
+    {
+        "name": "Duck",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/duck.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/duck.mp3"
+    },
+    {
+        "name": "Turtle",
+        "imagePath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/images/animals/turtle.webp",
+        "audioPath": "https://raw.githubusercontent.com/cuneytaykac/AnimalAssets/main/audio/animals/turtle.mp3"
+    }
+]
