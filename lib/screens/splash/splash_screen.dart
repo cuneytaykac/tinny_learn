@@ -33,24 +33,26 @@ class _SplashScreenState extends State<SplashScreen> {
   // State variables
   bool _isInitStarted = false;
   bool _isInitCompleted = false;
+  ConnectivityProvider? _connectivityProvider;
 
   @override
-  void initState() {
-    super.initState();
-    // Start listening to connectivity changes
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Save reference to ConnectivityProvider for safe access in dispose
+    if (_connectivityProvider == null) {
+      _connectivityProvider = Provider.of<ConnectivityProvider>(
+        context,
+        listen: false,
+      );
       _checkConnectivityAndInit();
-    });
+    }
   }
 
   void _checkConnectivityAndInit() {
-    final connectivityProvider = Provider.of<ConnectivityProvider>(
-      context,
-      listen: false,
-    );
+    if (_connectivityProvider == null) return;
 
     // Initial check
-    if (connectivityProvider.hasInternet) {
+    if (_connectivityProvider!.hasInternet) {
       _startInitialization();
     } else {
       // If no internet initially, set status (The wrapper will cover this screen anyway)
@@ -60,16 +62,13 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     // Listen for changes
-    connectivityProvider.addListener(_connectivityListener);
+    _connectivityProvider!.addListener(_connectivityListener);
   }
 
   void _connectivityListener() {
-    final connectivityProvider = Provider.of<ConnectivityProvider>(
-      context,
-      listen: false,
-    );
+    if (!mounted || _connectivityProvider == null) return;
 
-    if (connectivityProvider.hasInternet &&
+    if (_connectivityProvider!.hasInternet &&
         !_isInitStarted &&
         !_isInitCompleted) {
       _startInitialization();
@@ -78,11 +77,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void dispose() {
-    final connectivityProvider = Provider.of<ConnectivityProvider>(
-      context,
-      listen: false,
-    );
-    connectivityProvider.removeListener(_connectivityListener);
+    // Use saved reference instead of context
+    _connectivityProvider?.removeListener(_connectivityListener);
     super.dispose();
   }
 
