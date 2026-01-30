@@ -1,15 +1,16 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
+
 import 'package:audioplayers/audioplayers.dart';
-import 'package:confetti/confetti.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:confetti/confetti.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
+import '../../gen/locale_keys.g.dart';
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
-import '../../widgets/puzzle_piece.dart';
 import '../../utils/jigsaw_clipper.dart';
-import '../../gen/locale_keys.g.dart';
+import '../../widgets/puzzle_piece.dart';
 
 class PuzzleScreen extends StatefulWidget {
   final Category category;
@@ -212,7 +213,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Divider(
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withValues(alpha: 0.5),
                   thickness: 2,
                 ),
               ),
@@ -272,7 +273,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
       left: left,
       top: top,
       child: DragTarget<int>(
-        onAccept: (droppedIndex) => _onPieceDropped(index, droppedIndex),
+        onAcceptWithDetails: (details) => _onPieceDropped(index, details.data),
         builder: (context, candidateData, rejectedData) {
           // Logic size 100x100 drop zone
           return SizedBox(
@@ -293,7 +294,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
                       color:
                           isCompleted
                               ? Colors.transparent
-                              : Colors.white.withOpacity(0.8),
+                              : Colors.white.withValues(alpha: 0.8),
                     ),
                     size: const Size(130, 130), // Match widget size
                   ),
@@ -328,7 +329,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
     );
   }
 
-  // Helper from PuzzlePiece, duplicated here for the Slot outline
   JigsawClipper _getClipper(int index) {
     switch (index) {
       case 0:
@@ -343,14 +343,4 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
         return JigsawClipper();
     }
   }
-
-  // Helper Painter (We need to define it here or export it. It's in puzzle_piece.dart but not exported class?
-  // It was defined in puzzle_piece.dart. I should make it public or duplicate.
-  // I'll assume I can import it if I fix the import in the next step.
-  // Actually, I should probably move JigsawBorderPainter to jigsaw_clipper.dart or make it public.
-  // For now, I will assume it's available via import '../widgets/puzzle_piece.dart'.
-  // But wait, PuzzleScreen imports puzzle_piece.dart.
-  // I need to ensure JigsawBorderPainter is public in puzzle piece.)
-
-  // Helper method removed as it's no longer used. Alignment is handled by PuzzlePiece widget.
 }

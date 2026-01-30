@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import '../../providers/game_provider.dart';
-import '../../models/data_models.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
+
 import '../../gen/locale_keys.g.dart';
+import '../../models/data_models.dart';
+import '../../providers/game_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -252,7 +253,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.2),
+          color: color.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: color, width: 2),
         ),
@@ -299,7 +300,7 @@ class CategoryCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -330,7 +331,7 @@ class CategoryCard extends StatelessWidget {
             if (!isUnlocked)
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: const Center(

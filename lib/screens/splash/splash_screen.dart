@@ -1,16 +1,18 @@
-import 'package:flutter/services.dart';
 import 'dart:convert';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tiny_learners/gen/locale_keys.g.dart';
-import '../../data/remote/remote.dart';
-import '../../data/local/local.dart';
-import '../../providers/game_provider.dart';
-import '../../providers/connectivity_provider.dart';
-import '../../models/responseColor/response_color.dart';
 import 'package:provider/provider.dart';
+import 'package:tiny_learners/gen/locale_keys.g.dart';
+
+import '../../data/local/local.dart';
+import '../../data/remote/remote.dart';
+import '../../models/responseColor/response_color.dart';
+import '../../providers/connectivity_provider.dart';
+import '../../providers/game_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -237,7 +239,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   .then()
                   .shimmer(
                     duration: 1500.ms,
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withValues(alpha: 0.5),
                   )
                   .then(delay: 500.ms)
                   .shake(duration: 500.ms),
@@ -277,7 +279,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   borderRadius: BorderRadius.circular(10),
                   child: LinearProgressIndicator(
                     value: _progress,
-                    backgroundColor: Colors.white.withOpacity(0.3),
+                    backgroundColor: Colors.white.withValues(alpha: 0.3),
                     valueColor: const AlwaysStoppedAnimation<Color>(
                       Colors.orange,
                     ),

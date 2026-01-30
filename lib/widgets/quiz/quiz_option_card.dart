@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:country_flags_pro/country_flags_pro.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:country_flags_pro/country_flags_pro.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+
 import '../../models/data_models.dart';
 
 class QuizOptionCard extends StatelessWidget {
@@ -49,7 +50,7 @@ class QuizOptionCard extends StatelessWidget {
                     : null,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -70,11 +71,8 @@ class QuizOptionCard extends StatelessWidget {
                       ),
                     ),
                   );
-                } else if (item.imagePath == null && item.color != null) {
+                } else if (item.imagePath == null) {
                   // Solid Color (CategoryType.solidColor logic inference)
-                  // Ideally we should pass CategoryType, but checking color/image is a decent proxy if simple.
-                  // Actually, checking if it's NOT an image path usually implies color if we don't handle flags.
-                  // But let's assume 'color' property is valid for color category.
                   return Center(
                     child: Container(
                       width: 100,
@@ -84,7 +82,7 @@ class QuizOptionCard extends StatelessWidget {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: Colors.black.withValues(alpha: 0.2),
                             blurRadius: 5,
                             offset: const Offset(0, 2),
                           ),

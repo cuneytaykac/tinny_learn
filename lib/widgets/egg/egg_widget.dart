@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class EggWidget extends StatelessWidget {
@@ -30,20 +31,20 @@ class EggWidget extends StatelessWidget {
               borderRadius: borderRadius,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.25),
+                  color: Colors.black.withValues(alpha: 0.25),
                   blurRadius: 20,
                   offset: const Offset(0, 15),
                   spreadRadius: -5,
                 ),
                 BoxShadow(
-                  color: eggColor.withOpacity(0.5),
+                  color: eggColor.withValues(alpha: 0.5),
                   blurRadius: 30,
                   spreadRadius: 5,
                 ),
               ],
               gradient: RadialGradient(
                 colors: [
-                  eggColor.withOpacity(0.9),
+                  eggColor.withValues(alpha: 0.9),
                   HSLColor.fromColor(eggColor).withLightness(0.35).toColor(),
                 ],
                 center: const Alignment(-0.3, -0.4),
@@ -78,8 +79,8 @@ class EggWidget extends StatelessWidget {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            Colors.white.withOpacity(0.7),
-                            Colors.white.withOpacity(0.05),
+                            Colors.white.withValues(alpha: 0.7),
+                            Colors.white.withValues(alpha: 0.05),
                           ],
                         ),
                       ),
@@ -99,7 +100,7 @@ class EggWidget extends StatelessWidget {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                             blurRadius: 15,
                             spreadRadius: 5,
                           ),
@@ -192,6 +193,7 @@ class EggDecorationPainter extends CustomPainter {
 
   void _drawSineWave(Canvas canvas, Paint paint, double w, double y) {
     Path path = Path()..moveTo(0, y);
+    // ignore: curly_braces_in_flow_control_structures
     for (double i = 0; i <= w; i += 5) path.lineTo(i, y + 10 * sin(i * 0.1));
     canvas.drawPath(path, paint);
   }

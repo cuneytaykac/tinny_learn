@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:country_flags_pro/country_flags_pro.dart';
+import 'package:flutter/material.dart';
+
 import '../../providers/games/memory_game_provider.dart';
 
 class MemoryCardWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class MemoryCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -51,7 +52,7 @@ class MemoryCardWidget extends StatelessWidget {
                   child: Icon(
                     Icons.question_mark_rounded,
                     size: 50,
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                   ),
                 ),
       ),

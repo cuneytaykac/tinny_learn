@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
+
 import '../../models/data_models.dart';
-import '../../theme/app_theme.dart';
 import '../../providers/games/matching_game_provider.dart';
+import '../../theme/app_theme.dart';
 import '../../widgets/matching/matching_items.dart';
 
 class MatchingScreen extends StatelessWidget {
@@ -96,7 +97,7 @@ class MatchingScreen extends StatelessWidget {
                         // Success Overlay
                         if (provider.isGameComplete)
                           Container(
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withValues(alpha: 0.5),
                             child: Center(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,

@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../models/data_models.dart';
 
 class MatchingTargetItem extends StatelessWidget {
@@ -18,8 +19,8 @@ class MatchingTargetItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DragTarget<LearningItem>(
-      onWillAccept: (data) => data?.id == item.id,
-      onAccept: (data) => onMatch(item),
+      onWillAcceptWithDetails: (data) => data.data.id == item.id,
+      onAcceptWithDetails: (data) => onMatch(item),
       builder: (context, candidateData, rejectedData) {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -39,7 +40,7 @@ class MatchingTargetItem extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -120,7 +121,7 @@ class MatchingSourceItem extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 4),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withValues(alpha: 0.2),
                 blurRadius: 10,
                 offset: const Offset(0, 5),
               ),
@@ -132,7 +133,7 @@ class MatchingSourceItem extends StatelessWidget {
         width: 80,
         height: 80,
         decoration: BoxDecoration(
-          color: item.color.withOpacity(0.3),
+          color: item.color.withValues(alpha: 0.3),
           shape: BoxShape.circle,
         ),
       ),
@@ -145,7 +146,7 @@ class MatchingSourceItem extends StatelessWidget {
           border: Border.all(color: Colors.white, width: 3),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 5,
               offset: const Offset(0, 2),
             ),

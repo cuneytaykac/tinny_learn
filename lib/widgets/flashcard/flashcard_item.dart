@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:country_flags_pro/country_flags_pro.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:country_flags_pro/country_flags_pro.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:tiny_learners/gen/assets.gen.dart';
+import 'package:flutter/material.dart';
+
 import '../../models/data_models.dart';
 import '../../theme/app_theme.dart';
 
@@ -59,7 +59,7 @@ class _FlashcardItemState extends State<FlashcardItem>
         borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -90,7 +90,9 @@ class _FlashcardItemState extends State<FlashcardItem>
                                   borderRadius: BorderRadius.circular(16),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
+                                      color: Colors.black.withValues(
+                                        alpha: 0.2,
+                                      ),
                                       blurRadius: 10,
                                       offset: const Offset(0, 5),
                                     ),
@@ -107,7 +109,6 @@ class _FlashcardItemState extends State<FlashcardItem>
                             ),
                           );
                         case CategoryType.image:
-                        default:
                           if (widget.item.imagePath != null) {
                             return ScaleTransition(
                               scale: _scaleAnimation,
@@ -149,7 +150,7 @@ class _FlashcardItemState extends State<FlashcardItem>
                       vertical: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.orange.withOpacity(0.1),
+                      color: Colors.orange.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
@@ -197,7 +198,7 @@ class _FlashcardItemState extends State<FlashcardItem>
         border: Border.all(color: Colors.white, width: 4),
         boxShadow: [
           BoxShadow(
-            color: widget.item.color.withOpacity(0.5),
+            color: widget.item.color.withValues(alpha: 0.5),
             blurRadius: 20,
             spreadRadius: 2,
             offset: const Offset(0, 10),

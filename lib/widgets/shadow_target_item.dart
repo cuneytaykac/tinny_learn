@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/data_models.dart';
 
 class ShadowTargetItem extends StatelessWidget {
@@ -16,8 +17,9 @@ class ShadowTargetItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DragTarget<LearningItem>(
-      onWillAccept: (data) => !isMatched, // Only accept if not already matched
-      onAccept: onAccept,
+      onWillAcceptWithDetails:
+          (data) => !isMatched, // Only accept if not already matched
+      onAcceptWithDetails: (data) => onAccept(item),
       builder: (context, candidateData, rejectedData) {
         final isHovering = candidateData.isNotEmpty;
 
@@ -27,8 +29,8 @@ class ShadowTargetItem extends StatelessWidget {
           decoration: BoxDecoration(
             color:
                 isHovering
-                    ? Colors.green.withOpacity(0.2)
-                    : Colors.grey.withOpacity(0.1),
+                    ? Colors.green.withValues(alpha: 0.2)
+                    : Colors.grey.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: isHovering ? Colors.green : Colors.transparent,

@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:confetti/confetti.dart';
 import 'package:easy_localization/easy_localization.dart';
-import '../../models/data_models.dart';
-import '../../theme/app_theme.dart';
-import '../../providers/games/quiz_provider.dart';
-import '../../widgets/quiz/quiz_option_card.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../../gen/locale_keys.g.dart';
+import '../../models/data_models.dart';
+import '../../providers/games/quiz_provider.dart';
+import '../../theme/app_theme.dart';
+import '../../widgets/quiz/quiz_option_card.dart';
 
 class QuizScreen extends StatelessWidget {
   final Category category;
@@ -54,7 +55,7 @@ class QuizScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(24),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                color: Colors.black.withValues(alpha: 0.1),
                                 blurRadius: 10,
                                 offset: const Offset(0, 4),
                               ),

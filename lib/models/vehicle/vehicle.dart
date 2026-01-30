@@ -20,10 +20,10 @@ class Vehicle {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['imagePath'] = this.imagePath;
-    data['audioPath'] = this.audioPath;
+    final Map<String, dynamic> data = {};
+    data['name'] = name;
+    data['imagePath'] = imagePath;
+    data['audioPath'] = audioPath;
     return data;
   }
 }

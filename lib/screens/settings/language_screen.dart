@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../gen/locale_keys.g.dart';
-import '../../theme/app_theme.dart';
 import '../../providers/game_provider.dart';
+import '../../theme/app_theme.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({super.key});
@@ -92,7 +93,7 @@ class LanguageScreen extends StatelessWidget {
                 : null,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),

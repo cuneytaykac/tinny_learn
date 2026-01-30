@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
-import '../../models/data_models.dart';
+import 'dart:math';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
-import 'dart:math';
+import 'package:flutter/material.dart';
+
+import '../../models/data_models.dart';
 
 class SurpriseEggProvider extends ChangeNotifier {
   final Category category;
@@ -64,19 +66,27 @@ class SurpriseEggProvider extends ChangeNotifier {
     // 2. Pattern
     _patternType = _random.nextInt(4);
     if (_random.nextBool()) {
-      _patternColor = Colors.white.withOpacity(0.35);
+      _patternColor = Colors.white.withValues(alpha: 0.35);
     } else {
       _patternColor = hsl
           .withLightness(lightness + 0.2)
           .toColor()
-          .withOpacity(0.5);
+          .withValues(alpha: 0.5);
     }
 
     // 3. Background
-    _backgroundColor = hsl.withLightness(0.92).withSaturation(0.3).toColor();
+    _backgroundColor = hsl
+        .withLightness(0.92)
+        .withSaturation(0.3)
+        .toColor()
+        .withValues(alpha: 0.3);
 
     // 4. Text
-    _textColor = hsl.withLightness(0.2).withSaturation(0.8).toColor();
+    _textColor = hsl
+        .withLightness(0.2)
+        .withSaturation(0.8)
+        .toColor()
+        .withValues(alpha: 0.8);
 
     notifyListeners();
   }

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
 import '../models/data_models.dart';
 import '../utils/jigsaw_clipper.dart';
 
@@ -51,7 +52,6 @@ class PuzzlePiece extends StatelessWidget {
     // TL (0,0): Image(0,0) -> Widget(15,15). Offset = 15.
     // TR (1,0): Image(100,0) -> Widget(15,15). Offset X = 15 - 100 = -85.
     // BL (0,1): Image(0,100) -> Widget(15,15). Offset Y = 15 - 100 = -85.
-    double offsetX = -15.0; // Wait.
     // If widget top-left is (0,0). The padding starts at 15.
     // If I want Image(0,0) to be at Widget(15,15).
     // Then I place Image at left: 15, top: 15.

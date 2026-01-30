@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flutter/material.dart';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
+
 import '../../models/data_models.dart';
 
 class MemoryCard {
@@ -89,7 +91,7 @@ class MemoryGameProvider extends ChangeNotifier {
   void _startNewGame() {
     _status = GameStatus.playing;
     _isProcessing = false;
-    _flippedIndices.clear();
+    _flippedIndices = [];
     _stateVersion++;
 
     // Select 3 random items

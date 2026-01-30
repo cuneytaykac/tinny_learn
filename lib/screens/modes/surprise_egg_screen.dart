@@ -1,14 +1,16 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:confetti/confetti.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:confetti/confetti.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:provider/provider.dart';
+
+import '../../gen/locale_keys.g.dart';
 import '../../models/data_models.dart';
 import '../../providers/games/surprise_egg_provider.dart';
 import '../../widgets/egg/egg_widget.dart';
-import '../../gen/locale_keys.g.dart';
 
 class SurpriseEggScreen extends StatefulWidget {
   final Category category;
@@ -132,8 +134,8 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
                                           style: TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w900,
-                                            color: Colors.white.withOpacity(
-                                              0.9,
+                                            color: Colors.white.withValues(
+                                              alpha: 0.9,
                                             ),
                                             letterSpacing: 2,
                                             shadows: [
@@ -217,7 +219,7 @@ class _SurpriseEggScreenState extends State<SurpriseEggScreen>
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           blurRadius: 20,
                           offset: const Offset(0, 10),
                         ),
